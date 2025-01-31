@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         
