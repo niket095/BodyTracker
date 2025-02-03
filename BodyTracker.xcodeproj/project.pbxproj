@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE4796292D5155BF00B11AFB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4796282D5155BF00B11AFB /* MainTabBarController.swift */; };
+		CE47962B2D51598100B11AFB /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47962A2D51598100B11AFB /* StatisticViewController.swift */; };
+		CE47962D2D5159CA00B11AFB /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47962C2D5159CA00B11AFB /* ProfilViewController.swift */; };
 		CE8F54942D48115C008C5B6E /* Roboto-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE8F54932D48115C008C5B6E /* Roboto-VariableFont_wdth,wght.ttf */; };
 		CE8F54972D481591008C5B6E /* Font + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F54962D481591008C5B6E /* Font + Extension.swift */; };
 		CE8F549D2D481718008C5B6E /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F549C2D481718008C5B6E /* Color + Extension.swift */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE4796282D5155BF00B11AFB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CE47962A2D51598100B11AFB /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
+		CE47962C2D5159CA00B11AFB /* ProfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
 		CE8F54932D48115C008C5B6E /* Roboto-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
 		CE8F54962D481591008C5B6E /* Font + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + Extension.swift"; sourceTree = "<group>"; };
 		CE8F549C2D481718008C5B6E /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
@@ -72,6 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				CEF400082D401A7B009B6005 /* MainViewController.swift */,
+				CE4796282D5155BF00B11AFB /* MainTabBarController.swift */,
+				CE47962A2D51598100B11AFB /* StatisticViewController.swift */,
+				CE47962C2D5159CA00B11AFB /* ProfilViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -184,8 +193,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE47962D2D5159CA00B11AFB /* ProfilViewController.swift in Sources */,
 				CE8F54972D481591008C5B6E /* Font + Extension.swift in Sources */,
+				CE47962B2D51598100B11AFB /* StatisticViewController.swift in Sources */,
 				CEF400092D401A7B009B6005 /* MainViewController.swift in Sources */,
+				CE4796292D5155BF00B11AFB /* MainTabBarController.swift in Sources */,
 				CEF400052D401A7B009B6005 /* AppDelegate.swift in Sources */,
 				CEF400072D401A7B009B6005 /* SceneDelegate.swift in Sources */,
 				CE8F549D2D481718008C5B6E /* Color + Extension.swift in Sources */,

@@ -18,34 +18,7 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    private let userPhotoImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "noName")
-        imageView.backgroundColor = .backgroundUserPhoto
-        imageView.layer.borderWidth = 3
-        imageView.layer.masksToBounds = false
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.cornerRadius = imageView.frame.height/2
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private let backgroundCalendar: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.backgroundCalendarColor
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private let backgroundPluginWeather: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.backgroundWeatherColor
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private let labelWeather: UILabel = {
+    private let weatherLabel: UILabel = {
         let label = UILabel()
         label.text = "Погода"
         label.textColor = UIColor.userLabelColor
@@ -54,13 +27,69 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    private let descriptionWeather: UILabel = {
+    private let descriptionWeatherLabel: UILabel = {
         let label = UILabel()
         label.text = "Описание"
         label.textColor = UIColor.userLabelColor
         label.font = UIFont.robotoRegular(size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let workoutTodayLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Тренировка сегодня"
+        label.textColor = UIColor.userLabelColor
+        label.font = UIFont.robotoRegular(size: 14)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let trainingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Нет тренировки"
+        label.textColor = UIColor.userLabelColor
+        label.font = UIFont.robotoRegular(size: 36)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let descriptionTrainingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Нажните на кнопку Добавить"
+        label.textColor = UIColor.userLabelColor
+        label.font = UIFont.robotoRegular(size: 18)
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let userPhotoImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "noName")
+        imageView.backgroundColor = .backgroundUserPhoto
+        imageView.layer.borderWidth = 3
+        imageView.layer.masksToBounds = false
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let backgroundCalendar: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.backgroundCalendarColor
+        imageView.layer.cornerRadius = 10
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let backgroundPluginWeather: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.backgroundWeatherColor
+        imageView.layer.cornerRadius = 10
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     private let imagePluginWeather: UIImageView = {
@@ -70,58 +99,59 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
-    private let backgroundPluginAddWork: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.backgroundAddWork
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private let labelWorkoutToday: UILabel = {
-        let label = UILabel()
-        label.text = "Тренировка сегодня"
-        label.textColor = UIColor.userLabelColor
-        label.font = UIFont.robotoRegular(size: 14)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let peopleMainViewImage: UIImageView = {
+    private let peopleImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "people")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
+    lazy var addWorkButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .backgroundAddWork
+        button.tintColor = .plusAddWorkButton
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.setTitle("Добавить", for: .normal)
+        button.layer.cornerRadius = 10
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 40, left: -20, bottom: 0, right: 0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        userPhotoImage.layer.cornerRadius = userPhotoImage.frame.height/2
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         setConstraints()
-        
-        
     }
     
     private func setupView() {
-        view.backgroundColor = UIColor.bacgroundMainViewController
-        
-        
+        view.backgroundColor = UIColor.backgroundMainViewController
         view.addSubview(backgroundCalendar)
         view.addSubview(userPhotoImage)
         view.addSubview(userLabel)
         view.addSubview(backgroundPluginWeather)
-        view.addSubview(labelWeather)
-        view.addSubview(descriptionWeather)
+        view.addSubview(weatherLabel)
+        view.addSubview(descriptionWeatherLabel)
         view.addSubview(imagePluginWeather)
-        view.addSubview(backgroundPluginAddWork)
-        view.addSubview(labelWorkoutToday)
-        view.addSubview(peopleMainViewImage)
+        view.addSubview(addWorkButton)
+        view.addSubview(workoutTodayLabel)
+        view.addSubview(peopleImage)
+        view.addSubview(trainingLabel)
+        view.addSubview(descriptionTrainingLabel)
     }
 }
 extension MainViewController{
     private func setConstraints() {
         NSLayoutConstraint.activate([
-        
+            
             userPhotoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             userPhotoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             userPhotoImage.widthAnchor.constraint(equalToConstant: 100),
@@ -136,14 +166,14 @@ extension MainViewController{
             backgroundCalendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             backgroundCalendar.heightAnchor.constraint(equalToConstant: 69),
             
-            backgroundPluginAddWork.topAnchor.constraint(equalTo: backgroundCalendar.bottomAnchor, constant: 9),
-            backgroundPluginAddWork.trailingAnchor.constraint(equalTo: backgroundCalendar.trailingAnchor, constant: 0),
-            backgroundPluginAddWork.heightAnchor.constraint(equalToConstant: 80),
-            backgroundPluginAddWork.widthAnchor.constraint(equalToConstant: 80),
+            addWorkButton.topAnchor.constraint(equalTo: backgroundCalendar.bottomAnchor, constant: 9),
+            addWorkButton.trailingAnchor.constraint(equalTo: backgroundCalendar.trailingAnchor, constant: 0),
+            addWorkButton.heightAnchor.constraint(equalToConstant: 80),
+            addWorkButton.widthAnchor.constraint(equalToConstant: 80),
             
             backgroundPluginWeather.topAnchor.constraint(equalTo: backgroundCalendar.bottomAnchor, constant: 9),
             backgroundPluginWeather.leadingAnchor.constraint(equalTo: backgroundCalendar.leadingAnchor, constant: 0),
-            backgroundPluginWeather.trailingAnchor.constraint(equalTo: backgroundPluginAddWork.leadingAnchor, constant: 9),
+            backgroundPluginWeather.trailingAnchor.constraint(equalTo: addWorkButton.leadingAnchor, constant: -9),
             backgroundPluginWeather.heightAnchor.constraint(equalToConstant: 80),
             
             imagePluginWeather.topAnchor.constraint(equalTo: backgroundPluginWeather.topAnchor, constant: 9),
@@ -151,26 +181,30 @@ extension MainViewController{
             imagePluginWeather.heightAnchor.constraint(equalToConstant: 62),
             imagePluginWeather.widthAnchor.constraint(equalToConstant: 62),
             
-            labelWeather.topAnchor.constraint(equalTo: backgroundPluginWeather.topAnchor, constant: 9),
-            labelWeather.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 61),
-            labelWeather.heightAnchor.constraint(equalToConstant: 21),
+            weatherLabel.topAnchor.constraint(equalTo: backgroundPluginWeather.topAnchor, constant: 9),
+            weatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 61),
+            weatherLabel.heightAnchor.constraint(equalToConstant: 21),
             
-            descriptionWeather.topAnchor.constraint(equalTo: labelWeather.bottomAnchor, constant: 1),
-            descriptionWeather.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 1),
-            descriptionWeather.bottomAnchor.constraint(equalTo: backgroundPluginWeather.bottomAnchor, constant: -1),
+            descriptionWeatherLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 1),
+            descriptionWeatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 1),
+            descriptionWeatherLabel.bottomAnchor.constraint(equalTo: backgroundPluginWeather.bottomAnchor, constant: -1),
             
-            labelWorkoutToday.topAnchor.constraint(equalTo: backgroundPluginWeather.bottomAnchor, constant: 11),
-            labelWorkoutToday.leadingAnchor.constraint(equalTo: backgroundPluginWeather.leadingAnchor, constant: 0),
+            workoutTodayLabel.topAnchor.constraint(equalTo: backgroundPluginWeather.bottomAnchor, constant: 11),
+            workoutTodayLabel.leadingAnchor.constraint(equalTo: backgroundPluginWeather.leadingAnchor, constant: 0),
             
-            peopleMainViewImage.topAnchor.constraint(equalTo: labelWorkoutToday.bottomAnchor, constant: 24),
-            peopleMainViewImage.leadingAnchor.constraint(equalTo: labelWorkoutToday.leadingAnchor, constant: 55),
-            peopleMainViewImage.heightAnchor.constraint(equalToConstant: 300),
-            peopleMainViewImage.widthAnchor.constraint(equalToConstant: 251),
+            peopleImage.topAnchor.constraint(equalTo: workoutTodayLabel.bottomAnchor, constant: 24),
+            peopleImage.leadingAnchor.constraint(equalTo: workoutTodayLabel.leadingAnchor, constant: 55),
+            peopleImage.heightAnchor.constraint(equalToConstant: 300),
+            peopleImage.widthAnchor.constraint(equalToConstant: 251),
             
+            trainingLabel.topAnchor.constraint(equalTo: peopleImage.bottomAnchor, constant: 13),
+            trainingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 53),
+            trainingLabel.heightAnchor.constraint(equalToConstant: 43),
             
-            
-            
-            
+            descriptionTrainingLabel.topAnchor.constraint(equalTo: trainingLabel.bottomAnchor, constant: 1),
+            descriptionTrainingLabel.leadingAnchor.constraint(equalTo: view.centerXAnchor),
+            descriptionTrainingLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            descriptionTrainingLabel.heightAnchor.constraint(equalToConstant: 21),
         ])
     }
 }
