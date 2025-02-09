@@ -107,14 +107,15 @@ class MainViewController: UIViewController {
     }()
     
     lazy var addWorkButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .backgroundAddWork
-        button.tintColor = .plusAddWorkButton
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.setTitle("Добавить", for: .normal)
-        button.layer.cornerRadius = 10
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 0)
-        button.titleEdgeInsets = UIEdgeInsets(top: 40, left: -20, bottom: 0, right: 0)
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "Добавить"
+        configuration.image = UIImage (systemName: "plus")
+        configuration.imagePlacement = .top
+        configuration.imagePadding = 10
+        configuration.baseBackgroundColor = .backgroundAddWork
+        configuration.baseForegroundColor = .plusAddWorkButton
+        
+        let button = UIButton(configuration: configuration, primaryAction: nil)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
