@@ -194,12 +194,12 @@ extension MainViewController{
             workoutTodayLabel.leadingAnchor.constraint(equalTo: backgroundPluginWeather.leadingAnchor, constant: 0),
             
             peopleImage.topAnchor.constraint(equalTo: workoutTodayLabel.bottomAnchor, constant: 24),
-            peopleImage.leadingAnchor.constraint(equalTo: workoutTodayLabel.leadingAnchor, constant: 55),
+            peopleImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             peopleImage.heightAnchor.constraint(equalToConstant: 300),
             peopleImage.widthAnchor.constraint(equalToConstant: 251),
             
             trainingLabel.topAnchor.constraint(equalTo: peopleImage.bottomAnchor, constant: 13),
-            trainingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 53),
+            trainingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             trainingLabel.heightAnchor.constraint(equalToConstant: 43),
             
             descriptionTrainingLabel.topAnchor.constraint(equalTo: trainingLabel.bottomAnchor, constant: 1),
