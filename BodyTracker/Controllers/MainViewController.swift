@@ -18,24 +18,6 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    private let weatherLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Погода"
-        label.textColor = UIColor.userLabelColor
-        label.font = UIFont.robotoRegular(size: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let descriptionWeatherLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Описание"
-        label.textColor = UIColor.userLabelColor
-        label.font = UIFont.robotoRegular(size: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private let workoutTodayLabel: UILabel = {
         let label = UILabel()
         label.text = "Тренировка сегодня"
@@ -84,28 +66,13 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
-    private let backgroundPluginWeather: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.backgroundWeatherColor
-        imageView.layer.cornerRadius = 10
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private let imagePluginWeather: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "imageWeather")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
     private let peopleImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "people")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    //
+
     lazy var addWorkButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
         configuration.title = "Добавить"
@@ -119,6 +86,8 @@ class MainViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private let weatherView = WeatherView()
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -138,10 +107,7 @@ class MainViewController: UIViewController {
         view.addSubview(backgroundCalendar)
         view.addSubview(userPhotoImage)
         view.addSubview(userLabel)
-        view.addSubview(backgroundPluginWeather)
-        view.addSubview(weatherLabel)
-        view.addSubview(descriptionWeatherLabel)
-        view.addSubview(imagePluginWeather)
+        view.addSubview(weatherView)
         view.addSubview(addWorkButton)
         view.addSubview(workoutTodayLabel)
         view.addSubview(peopleImage)
@@ -172,26 +138,13 @@ extension MainViewController{
             addWorkButton.heightAnchor.constraint(equalToConstant: 80),
             addWorkButton.widthAnchor.constraint(equalToConstant: 80),
             
-            backgroundPluginWeather.topAnchor.constraint(equalTo: backgroundCalendar.bottomAnchor, constant: 9),
-            backgroundPluginWeather.leadingAnchor.constraint(equalTo: backgroundCalendar.leadingAnchor, constant: 0),
-            backgroundPluginWeather.trailingAnchor.constraint(equalTo: addWorkButton.leadingAnchor, constant: -9),
-            backgroundPluginWeather.heightAnchor.constraint(equalToConstant: 80),
+            weatherView.topAnchor.constraint(equalTo: backgroundCalendar.bottomAnchor, constant: 9),
+            weatherView.leadingAnchor.constraint(equalTo: backgroundCalendar.leadingAnchor, constant: 0),
+            weatherView.trailingAnchor.constraint(equalTo: addWorkButton.leadingAnchor, constant: -9),
+            weatherView.heightAnchor.constraint(equalToConstant: 80),
             
-            imagePluginWeather.topAnchor.constraint(equalTo: backgroundPluginWeather.topAnchor, constant: 9),
-            imagePluginWeather.leadingAnchor.constraint(equalTo: backgroundPluginWeather.leadingAnchor, constant: 13),
-            imagePluginWeather.heightAnchor.constraint(equalToConstant: 62),
-            imagePluginWeather.widthAnchor.constraint(equalToConstant: 62),
-            
-            weatherLabel.topAnchor.constraint(equalTo: backgroundPluginWeather.topAnchor, constant: 9),
-            weatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 61),
-            weatherLabel.heightAnchor.constraint(equalToConstant: 21),
-            
-            descriptionWeatherLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 1),
-            descriptionWeatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 1),
-            descriptionWeatherLabel.bottomAnchor.constraint(equalTo: backgroundPluginWeather.bottomAnchor, constant: -1),
-            
-            workoutTodayLabel.topAnchor.constraint(equalTo: backgroundPluginWeather.bottomAnchor, constant: 11),
-            workoutTodayLabel.leadingAnchor.constraint(equalTo: backgroundPluginWeather.leadingAnchor, constant: 0),
+            workoutTodayLabel.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 11),
+            workoutTodayLabel.leadingAnchor.constraint(equalTo: weatherView.leadingAnchor, constant: 0),
             
             peopleImage.topAnchor.constraint(equalTo: workoutTodayLabel.bottomAnchor, constant: 24),
             peopleImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
