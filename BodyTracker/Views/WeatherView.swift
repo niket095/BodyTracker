@@ -65,7 +65,7 @@ class WeatherView: UIView {
     }
 }
 
-extension WeatherView{
+extension WeatherView {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             

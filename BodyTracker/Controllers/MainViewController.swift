@@ -58,13 +58,13 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
-    private let backgroundCalendar: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.backgroundCalendarColor
-        imageView.layer.cornerRadius = 10
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+//    private let backgroundCalendar: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.backgroundColor = UIColor.backgroundCalendarColor
+//        imageView.layer.cornerRadius = 10
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        return imageView
+//    }()
     
     private let peopleImage: UIImageView = {
         let imageView = UIImageView()
@@ -88,6 +88,7 @@ class MainViewController: UIViewController {
     }()
     
     private let weatherView = WeatherView()
+    private let calendarView = CalendarView()
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -104,7 +105,7 @@ class MainViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = UIColor.backgroundMainViewController
-        view.addSubview(backgroundCalendar)
+        view.addSubview(calendarView)
         view.addSubview(userPhotoImage)
         view.addSubview(userLabel)
         view.addSubview(weatherView)
@@ -128,18 +129,18 @@ extension MainViewController{
             userLabel.leadingAnchor.constraint(equalTo: userPhotoImage.trailingAnchor, constant: 6),
             userLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             
-            backgroundCalendar.topAnchor.constraint(equalTo: userPhotoImage.topAnchor, constant: 50),
-            backgroundCalendar.leadingAnchor.constraint(equalTo: userPhotoImage.leadingAnchor, constant: 0),
-            backgroundCalendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            backgroundCalendar.heightAnchor.constraint(equalToConstant: 69),
+            calendarView.topAnchor.constraint(equalTo: userPhotoImage.topAnchor, constant: 50),
+            calendarView.leadingAnchor.constraint(equalTo: userPhotoImage.leadingAnchor, constant: 0),
+            calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            calendarView.heightAnchor.constraint(equalToConstant: 69),
             
-            addWorkButton.topAnchor.constraint(equalTo: backgroundCalendar.bottomAnchor, constant: 9),
-            addWorkButton.trailingAnchor.constraint(equalTo: backgroundCalendar.trailingAnchor, constant: 0),
+            addWorkButton.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 9),
+            addWorkButton.trailingAnchor.constraint(equalTo: calendarView.trailingAnchor, constant: 0),
             addWorkButton.heightAnchor.constraint(equalToConstant: 80),
             addWorkButton.widthAnchor.constraint(equalToConstant: 80),
             
-            weatherView.topAnchor.constraint(equalTo: backgroundCalendar.bottomAnchor, constant: 9),
-            weatherView.leadingAnchor.constraint(equalTo: backgroundCalendar.leadingAnchor, constant: 0),
+            weatherView.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 9),
+            weatherView.leadingAnchor.constraint(equalTo: calendarView.leadingAnchor, constant: 0),
             weatherView.trailingAnchor.constraint(equalTo: addWorkButton.leadingAnchor, constant: -9),
             weatherView.heightAnchor.constraint(equalToConstant: 80),
             
