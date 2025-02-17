@@ -37,6 +37,7 @@ class CalendarView: UIView {
         setupView()
         setupCollection()
         setConstraints()
+        addShadowOnView()
     }
     
     required init?(coder: NSCoder) {
@@ -81,9 +82,11 @@ extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UI
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         
         
-        
+        cell.backgroundColor = .gray
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 50, height: 50)
+    }
 }

@@ -70,6 +70,7 @@ class MainViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "people")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.addShadowOnView()
         return imageView
     }()
 
@@ -84,6 +85,7 @@ class MainViewController: UIViewController {
         
         let button = UIButton(configuration: configuration, primaryAction: nil)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addShadowOnView()
         return button
     }()
     

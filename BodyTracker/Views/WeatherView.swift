@@ -50,6 +50,7 @@ class WeatherView: UIView {
         
         setupView()
         setConstraints()
+        addShadowOnView()
     }
     
     required init?(coder: NSCoder) {
