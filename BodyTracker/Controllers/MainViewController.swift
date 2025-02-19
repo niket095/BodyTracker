@@ -48,7 +48,7 @@ class MainViewController: UIViewController {
     
     private let userPhotoImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "noName")
+        imageView.image = UIImage(named: Constants.Images.noNameImage)
         imageView.backgroundColor = .backgroundUserPhoto
         imageView.layer.borderWidth = 3
         imageView.layer.masksToBounds = false
@@ -58,17 +58,9 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
-//    private let backgroundCalendar: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.backgroundColor = UIColor.backgroundCalendarColor
-//        imageView.layer.cornerRadius = 10
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        return imageView
-//    }()
-    
     private let peopleImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "people")
+        imageView.image = UIImage(named: Constants.Images.peopleImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.addShadowOnView()
         return imageView

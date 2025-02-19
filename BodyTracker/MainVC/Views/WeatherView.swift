@@ -19,7 +19,7 @@ class WeatherView: UIView {
     
     private let imagePluginWeather: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "imageWeather")
+        imageView.image = UIImage(named: Constants.Images.weatherImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -35,9 +35,11 @@ class WeatherView: UIView {
     
     private let descriptionWeatherLabel: UILabel = {
         let label = UILabel()
-        label.text = "Описание"
+        label.text = "good weather to exercise outside, do not forget to bring water with you"
+        label.numberOfLines = 0
+        label.textAlignment = .center
         label.textColor = UIColor.userLabelColor
-        label.font = UIFont.robotoRegular(size: 18)
+        label.font = UIFont.robotoRegular(size: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -86,6 +88,7 @@ extension WeatherView {
             
             descriptionWeatherLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 1),
             descriptionWeatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 1),
+            descriptionWeatherLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 1),
             descriptionWeatherLabel.bottomAnchor.constraint(equalTo: backgroundPluginWeather.bottomAnchor, constant: -1),
         ])
     }

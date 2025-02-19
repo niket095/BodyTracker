@@ -1,5 +1,5 @@
 //
-//  Color + Extension.swift
+//  UIColor + Extension.swift
 //  BodyTracker
 //
 //  Created by Nikita Putilov on 28.01.2025.

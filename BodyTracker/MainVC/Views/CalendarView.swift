@@ -25,7 +25,7 @@ class CalendarView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
         collectionView.bounces = false
-        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -54,7 +54,7 @@ class CalendarView: UIView {
     private func setupCollection() {
         calendarCollectionView.delegate = self
         calendarCollectionView.dataSource = self
-        calendarCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        calendarCollectionView.register(CalendarCollectionViewCell.self, forCellWithReuseIdentifier: CalendarCollectionViewCell.cellID)
     }
     
     private func setConstraints() {
@@ -79,14 +79,17 @@ extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.cellID, for: indexPath) as? CalendarCollectionViewCell else { return UICollectionViewCell() }
         
-        
-        cell.backgroundColor = .gray
+       
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 50, height: 50)
+        CGSize(width: 34, height: 59)
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 10.0
+//    }
 }
