@@ -75,13 +75,19 @@ class CalendarView: UIView {
 
 extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        7
+        13
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.cellID, for: indexPath) as? CalendarCollectionViewCell else { return UICollectionViewCell() }
         
-       
+        let dateTimeZone = Date().localeDate()
+        print("дата:", dateTimeZone)
+        let weekArray = dateTimeZone.getWeekArray()
+        print("weekArray:", weekArray)
+        
+        cell.cellConfigure(numberOfDay: weekArray[0][indexPath.item], dayOfWeek: weekArray[1][indexPath.item])
+        
         return cell
     }
     
