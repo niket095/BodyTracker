@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.text = "Новый пользователь"
         label.textColor = UIColor.userLabelColor
-        label.font = UIFont.robotoRegular(size: 24)
+        label.font = UIFont.robotoBold(size: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.text = "Нет тренировки"
         label.textColor = UIColor.userLabelColor
-        label.font = UIFont.robotoRegular(size: 36)
+        label.font = UIFont.robotoBold(size: 36)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -48,7 +48,7 @@ class MainViewController: UIViewController {
     
     private let userPhotoImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Constants.Images.noNameImage)
+        imageView.image = UIImage(named: Resources.noNameImage)
         imageView.backgroundColor = .backgroundUserPhoto
         imageView.layer.borderWidth = 3
         imageView.layer.masksToBounds = false
@@ -60,13 +60,13 @@ class MainViewController: UIViewController {
     
     private let peopleImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Constants.Images.peopleImage)
+        imageView.image = UIImage(named: Resources.peopleImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.addShadowOnView()
         return imageView
     }()
 
-    lazy var addWorkButton: UIButton = {
+    private let addWorkButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
         configuration.title = "Добавить"
         configuration.image = UIImage (systemName: "plus")
@@ -95,6 +95,7 @@ class MainViewController: UIViewController {
         
         setupView()
         setConstraints()
+        setTarget()
     }
     
     private func setupView() {
@@ -155,5 +156,18 @@ extension MainViewController{
             descriptionTrainingLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             descriptionTrainingLabel.heightAnchor.constraint(equalToConstant: 21),
         ])
+    }
+}
+
+extension MainViewController {
+    private func setTarget() {
+        addWorkButton.addTarget(self, action: #selector(addWorkButtonAction), for: .touchUpInside)
+    }
+    
+    @objc private func addWorkButtonAction() {
+        let vc = NewWorkoutViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+        
     }
 }

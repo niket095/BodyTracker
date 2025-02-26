@@ -8,9 +8,5 @@
 import UIKit
 
 enum Constants {
-    enum Images {
-        static let noNameImage = "noName"
-        static let weatherImage = "imageWeather"
-        static let peopleImage = "people"
-    }
+    static let radiusCorner = 10
 }

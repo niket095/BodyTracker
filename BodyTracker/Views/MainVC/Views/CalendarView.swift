@@ -59,7 +59,6 @@ class CalendarView: UIView {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            
             backgroundCalendar.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             backgroundCalendar.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             backgroundCalendar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
@@ -86,7 +85,7 @@ extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UI
         let weekArray = dateTimeZone.getWeekArray()
         print("weekArray:", weekArray)
         
-        cell.cellConfigure(numberOfDay: weekArray[0][indexPath.item], dayOfWeek: weekArray[1][indexPath.item])
+        cell.cellConfigure(numberOfDay: weekArray[1][indexPath.item], dayOfWeek: weekArray[0][indexPath.item])
         
         return cell
     }
@@ -94,8 +93,4 @@ extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 34, height: 59)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10.0
-//    }
 }

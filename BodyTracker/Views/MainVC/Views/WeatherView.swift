@@ -19,7 +19,7 @@ class WeatherView: UIView {
     
     private let imagePluginWeather: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Constants.Images.weatherImage)
+        imageView.image = UIImage(named: Resources.weatherImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -28,7 +28,7 @@ class WeatherView: UIView {
         let label = UILabel()
         label.text = "Погода"
         label.textColor = UIColor.userLabelColor
-        label.font = UIFont.robotoRegular(size: 18)
+        label.font = UIFont.robotoBold(size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

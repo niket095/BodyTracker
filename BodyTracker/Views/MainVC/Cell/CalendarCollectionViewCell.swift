@@ -15,7 +15,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "We"
         label.textColor = .white
-        label.font = UIFont.robotoRegular(size: 16)
+        label.font = UIFont.robotoBold(size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -24,10 +24,28 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "14"
         label.textColor = .white
-        label.font = UIFont.robotoRegular(size: 20)
+        label.font = UIFont.robotoBold(size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupCell()
+        setConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupCell() {
+        layer.cornerRadius = 10
+        
+        addSubview(dayOfWeekLabel)
+        addSubview(numberOfDayLabel)
+    }
     
     override var isSelected: Bool {
         didSet {
@@ -47,34 +65,15 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         dayOfWeekLabel.text = dayOfWeek
         numberOfDayLabel.text = numberOfDay
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setupCell()
-        setConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupCell() {
-        layer.cornerRadius = 10
-        
-        addSubview(dayOfWeekLabel)
-        addSubview(numberOfDayLabel)
-    }
 }
 
 extension CalendarCollectionViewCell{
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            
-            dayOfWeekLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            dayOfWeekLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             dayOfWeekLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            numberOfDayLabel.topAnchor.constraint(equalTo: dayOfWeekLabel.bottomAnchor, constant: 3),
+            numberOfDayLabel.topAnchor.constraint(equalTo: dayOfWeekLabel.bottomAnchor, constant: 5),
             numberOfDayLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
