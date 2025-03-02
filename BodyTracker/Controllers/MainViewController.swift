@@ -48,7 +48,7 @@ class MainViewController: UIViewController {
     
     private let userPhotoImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Resources.noNameImage)
+        imageView.image = UIImage(named: Constants.Images.noNameImage)
         imageView.backgroundColor = .backgroundUserPhoto
         imageView.layer.borderWidth = 3
         imageView.layer.masksToBounds = false
@@ -60,7 +60,7 @@ class MainViewController: UIViewController {
     
     private let peopleImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Resources.peopleImage)
+        imageView.image = UIImage(named: Constants.Images.peopleImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.addShadowOnView()
         return imageView

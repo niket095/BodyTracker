@@ -19,7 +19,7 @@ class WeatherView: UIView {
     
     private let imagePluginWeather: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Resources.weatherImage)
+        imageView.image = UIImage(named: Constants.Images.weatherImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -71,7 +71,6 @@ class WeatherView: UIView {
 extension WeatherView {
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            
             backgroundPluginWeather.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             backgroundPluginWeather.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             backgroundPluginWeather.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),

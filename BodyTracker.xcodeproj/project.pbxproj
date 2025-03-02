@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		CE2C3B302D5FC30500A4BA16 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C3B2F2D5FC30500A4BA16 /* CalendarView.swift */; };
 		CE2C3B322D5FC3EA00A4BA16 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C3B312D5FC3EA00A4BA16 /* WeatherView.swift */; };
+		CE3F6DBB2D74E4DF00ED4033 /* DateAndRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F6DBA2D74E4DF00ED4033 /* DateAndRepeatView.swift */; };
 		CE4796292D5155BF00B11AFB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4796282D5155BF00B11AFB /* MainTabBarController.swift */; };
 		CE47962B2D51598100B11AFB /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47962A2D51598100B11AFB /* StatisticViewController.swift */; };
 		CE47962D2D5159CA00B11AFB /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47962C2D5159CA00B11AFB /* ProfilViewController.swift */; };
-		CE49BB682D6F9BEB005BFBEB /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49BB672D6F9BEB005BFBEB /* Resources.swift */; };
 		CE49BB6A2D6F9F7F005BFBEB /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49BB692D6F9F7F005BFBEB /* NewWorkoutViewController.swift */; };
 		CE49BB6C2D6FA0FB005BFBEB /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49BB6B2D6FA0FB005BFBEB /* UILabel + Extension.swift */; };
 		CE89218E2D63AB9200BA1D10 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89218D2D63AB9200BA1D10 /* UIView + Extension.swift */; };
@@ -32,10 +32,10 @@
 /* Begin PBXFileReference section */
 		CE2C3B2F2D5FC30500A4BA16 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		CE2C3B312D5FC3EA00A4BA16 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		CE3F6DBA2D74E4DF00ED4033 /* DateAndRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndRepeatView.swift; sourceTree = "<group>"; };
 		CE4796282D5155BF00B11AFB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CE47962A2D51598100B11AFB /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		CE47962C2D5159CA00B11AFB /* ProfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
-		CE49BB672D6F9BEB005BFBEB /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		CE49BB692D6F9F7F005BFBEB /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		CE49BB6B2D6FA0FB005BFBEB /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		CE89218D2D63AB9200BA1D10 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
@@ -74,9 +74,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		CE3F6DB82D74E44C00ED4033 /* NewWorkoutVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F6DB92D74E4AB00ED4033 /* Views */,
+			);
+			path = NewWorkoutVC;
+			sourceTree = "<group>";
+		};
+		CE3F6DB92D74E4AB00ED4033 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F6DBA2D74E4DF00ED4033 /* DateAndRepeatView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CE49BB662D6F986D005BFBEB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE3F6DB82D74E44C00ED4033 /* NewWorkoutVC */,
 				CE95464E2D665416001E5A8F /* MainVC */,
 			);
 			path = Views;
@@ -106,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				CE95464B2D66449F001E5A8F /* Constants.swift */,
-				CE49BB672D6F9BEB005BFBEB /* Resources.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -263,7 +279,6 @@
 				CE9546502D6654A1001E5A8F /* CalendarCollectionViewCell.swift in Sources */,
 				CE47962D2D5159CA00B11AFB /* ProfilViewController.swift in Sources */,
 				CE8F54972D481591008C5B6E /* UIFont + Extension.swift in Sources */,
-				CE49BB682D6F9BEB005BFBEB /* Resources.swift in Sources */,
 				CE47962B2D51598100B11AFB /* StatisticViewController.swift in Sources */,
 				CEF400092D401A7B009B6005 /* MainViewController.swift in Sources */,
 				CE89218E2D63AB9200BA1D10 /* UIView + Extension.swift in Sources */,
@@ -277,6 +292,7 @@
 				CE49BB6A2D6F9F7F005BFBEB /* NewWorkoutViewController.swift in Sources */,
 				CE95464C2D66449F001E5A8F /* Constants.swift in Sources */,
 				CE9546522D665EB9001E5A8F /* Date + Extension.swift in Sources */,
+				CE3F6DBB2D74E4DF00ED4033 /* DateAndRepeatView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
