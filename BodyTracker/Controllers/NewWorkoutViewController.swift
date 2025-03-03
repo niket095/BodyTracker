@@ -18,36 +18,41 @@ class NewWorkoutViewController: UIViewController {
         return scrollView
     }()
     
-    private let newWorkoutLabel = UILabel(text: "Новая тренировка", color: .black, font: UIFont.robotoBold(size: 24))
+    private let newWorkoutLabel = UILabel(text: "Новая тренировка", color: .specialGray, font: UIFont.robotoBold(size: 24))
     
     private let closeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = .green
-        button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
-        button.backgroundColor = .gray
+        button.tintColor = .specialDirtyWhite
+        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.backgroundColor = .specialGreen
+        button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private let nameLabel = UILabel(text: "ИМЯ", color: .black, font: UIFont.robotoRegular(size: 14))
+    private let nameLabel = UILabel(text: "Имя", color: .specialBeige, font: UIFont.robotoRegular(size: 14))
     
     private let textField: UITextField = {
         let textField = UITextField()
+        textField.backgroundColor = .specialDirtyWhite
         textField.borderStyle = .none
         textField.returnKeyType = .done
         textField.clearButtonMode = .always
         textField.keyboardType = .default
+        textField.layer.cornerRadius = Constants.radiusCorner
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.addShadowOnView()
         return textField
     }()
     
-    private let dateOrRepeatLabel = UILabel(text: "Дата и повторы", color: .black, font: UIFont.robotoRegular(size: 14))
+    private let dateOrRepeatLabel = UILabel(text: "Дата и повторы", color: .specialBeige, font: UIFont.robotoRegular(size: 14))
     
-    private let repsOrTimerLabel = UILabel(text: "Повторы или таймер", color: .black, font: UIFont.robotoRegular(size: 14))
+    private let repsOrTimerLabel = UILabel(text: "Повторы или таймер", color: .specialBeige, font: UIFont.robotoRegular(size: 14))
     
     private let saveButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .green
+        button.backgroundColor = .specialGreen
+        button.tintColor = .white
         button.setTitle("Сохранить", for: .normal)
         button.layer.cornerRadius = Constants.radiusCorner
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -55,17 +60,24 @@ class NewWorkoutViewController: UIViewController {
     }()
     
     private let dateOrRepeatView = DateAndRepeatView()
-    private let repsOrTimerView = CalendarView()
+    private let repsOrTimerView = RepsOrTimerView()
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        closeButton.layer.cornerRadius = closeButton.frame.height/2
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         setConstraints()
+        setTarget()
     }
     
     private func setupView() {
-        view.backgroundColor = .backgroundMainViewController
+        view.backgroundColor = .specialBackgoundColor
         view.addSubview(scrollView)
         scrollView.addSubview(newWorkoutLabel)
         scrollView.addSubview(closeButton)
@@ -82,7 +94,6 @@ class NewWorkoutViewController: UIViewController {
 extension NewWorkoutViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
@@ -132,5 +143,16 @@ extension NewWorkoutViewController {
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             saveButton.heightAnchor.constraint(equalToConstant: 55)
         ])
+    }
+}
+
+extension NewWorkoutViewController {
+    private func setTarget() {
+        closeButton.addTarget(self, action: #selector(backMainVC), for: .touchUpInside)
+    }
+    
+    @objc private func backMainVC() {
+        let vc = NewWorkoutViewController()
+        self.dismiss(animated: true, completion: nil)
     }
 }

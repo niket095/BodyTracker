@@ -11,7 +11,7 @@ class WeatherView: UIView {
     
     private let backgroundPluginWeather: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.backgroundWeatherColor
+        imageView.backgroundColor = UIColor.specialWhite
         imageView.layer.cornerRadius = 10
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -27,7 +27,7 @@ class WeatherView: UIView {
     private let weatherLabel: UILabel = {
         let label = UILabel()
         label.text = "Погода"
-        label.textColor = UIColor.userLabelColor
+        label.textColor = UIColor.specialGray
         label.font = UIFont.robotoBold(size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -38,16 +38,14 @@ class WeatherView: UIView {
         label.text = "good weather to exercise outside, do not forget to bring water with you"
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.textColor = UIColor.userLabelColor
+        label.textColor = UIColor.specialGray
         label.font = UIFont.robotoRegular(size: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         translatesAutoresizingMaskIntoConstraints = false
         
         setupView()
@@ -60,7 +58,7 @@ class WeatherView: UIView {
     }
     
     private func setupView() {
-
+        
         addSubview(backgroundPluginWeather)
         addSubview(weatherLabel)
         addSubview(descriptionWeatherLabel)

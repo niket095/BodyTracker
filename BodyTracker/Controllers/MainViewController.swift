@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     private let userLabel: UILabel = {
         let label = UILabel()
         label.text = "Новый пользователь"
-        label.textColor = UIColor.userLabelColor
+        label.textColor = UIColor.specialGray
         label.font = UIFont.robotoBold(size: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     private let workoutTodayLabel: UILabel = {
         let label = UILabel()
         label.text = "Тренировка сегодня"
-        label.textColor = UIColor.userLabelColor
+        label.textColor = UIColor.specialBeige
         label.font = UIFont.robotoRegular(size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
     private let trainingLabel: UILabel = {
         let label = UILabel()
         label.text = "Нет тренировки"
-        label.textColor = UIColor.userLabelColor
+        label.textColor = UIColor.specialGray
         label.font = UIFont.robotoBold(size: 36)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -39,7 +39,7 @@ class MainViewController: UIViewController {
     private let descriptionTrainingLabel: UILabel = {
         let label = UILabel()
         label.text = "Нажните на кнопку Добавить"
-        label.textColor = UIColor.userLabelColor
+        label.textColor = UIColor.specialGray
         label.font = UIFont.robotoRegular(size: 18)
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
     private let userPhotoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: Constants.Images.noNameImage)
-        imageView.backgroundColor = .backgroundUserPhoto
+        imageView.backgroundColor = .specialLightGrey
         imageView.layer.borderWidth = 3
         imageView.layer.masksToBounds = false
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -65,15 +65,15 @@ class MainViewController: UIViewController {
         imageView.addShadowOnView()
         return imageView
     }()
-
+    
     private let addWorkButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
         configuration.title = "Добавить"
         configuration.image = UIImage (systemName: "plus")
         configuration.imagePlacement = .top
         configuration.imagePadding = 10
-        configuration.baseBackgroundColor = .backgroundAddWork
-        configuration.baseForegroundColor = .plusAddWorkButton
+        configuration.baseBackgroundColor = .specialYellow
+        configuration.baseForegroundColor = .specialDarkGreen
         
         let button = UIButton(configuration: configuration, primaryAction: nil)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +99,7 @@ class MainViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = UIColor.backgroundMainViewController
+        view.backgroundColor = UIColor.specialBackgoundColor
         view.addSubview(calendarView)
         view.addSubview(userPhotoImage)
         view.addSubview(userLabel)
@@ -114,7 +114,6 @@ class MainViewController: UIViewController {
 extension MainViewController{
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            
             userPhotoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             userPhotoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             userPhotoImage.widthAnchor.constraint(equalToConstant: 100),
@@ -154,7 +153,7 @@ extension MainViewController{
             descriptionTrainingLabel.topAnchor.constraint(equalTo: trainingLabel.bottomAnchor, constant: 1),
             descriptionTrainingLabel.leadingAnchor.constraint(equalTo: view.centerXAnchor),
             descriptionTrainingLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            descriptionTrainingLabel.heightAnchor.constraint(equalToConstant: 21),
+            descriptionTrainingLabel.heightAnchor.constraint(equalToConstant: 21)
         ])
     }
 }
@@ -168,6 +167,5 @@ extension MainViewController {
         let vc = NewWorkoutViewController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
-        
     }
 }

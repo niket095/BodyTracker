@@ -11,7 +11,7 @@ class CalendarView: UIView {
     
     private let backgroundCalendar: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.backgroundCalendarColor
+        imageView.backgroundColor = UIColor.specialGreen
         imageView.layer.cornerRadius = 10
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -29,7 +29,6 @@ class CalendarView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,7 +77,7 @@ extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.cellID, for: indexPath) as? CalendarCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.cellID, for: indexPath) as? CalendarCollectionViewCell else { return UICollectionViewCell() }
         
         let dateTimeZone = Date().localeDate()
         print("дата:", dateTimeZone)
