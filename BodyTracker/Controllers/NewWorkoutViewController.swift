@@ -18,7 +18,10 @@ class NewWorkoutViewController: UIViewController {
         return scrollView
     }()
     
-    private let newWorkoutLabel = UILabel(text: "Новая тренировка", color: .specialGray, font: UIFont.robotoBold(size: 24))
+    private let newWorkoutLabel = UILabel(text: "Новая тренировка",
+                                          color: .specialGray,
+                                          font: UIFont.robotoBold(size: 24),
+                                          alignment: .left)
     
     private let closeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -30,7 +33,10 @@ class NewWorkoutViewController: UIViewController {
         return button
     }()
     
-    private let nameLabel = UILabel(text: "Имя", color: .specialBeige, font: UIFont.robotoRegular(size: 14))
+    private let nameLabel = UILabel(text: "Имя",
+                                    color: .specialBeige,
+                                    font: UIFont.robotoRegular(size: 14),
+                                    alignment: .left)
     
     private let textField: UITextField = {
         let textField = UITextField()
@@ -45,9 +51,15 @@ class NewWorkoutViewController: UIViewController {
         return textField
     }()
     
-    private let dateOrRepeatLabel = UILabel(text: "Дата и повторы", color: .specialBeige, font: UIFont.robotoRegular(size: 14))
+    private let dateOrRepeatLabel = UILabel(text: "Дата и повторы",
+                                            color: .specialBeige,
+                                            font: UIFont.robotoRegular(size: 14),
+                                            alignment: .left)
     
-    private let repsOrTimerLabel = UILabel(text: "Повторы или таймер", color: .specialBeige, font: UIFont.robotoRegular(size: 14))
+    private let repsOrTimerLabel = UILabel(text: "Повторы или таймер",
+                                           color: .specialBeige,
+                                           font: UIFont.robotoRegular(size: 14),
+                                           alignment: .left)
     
     private let saveButton: UIButton = {
         let button = UIButton(type: .system)
@@ -105,8 +117,8 @@ extension NewWorkoutViewController {
             
             closeButton.topAnchor.constraint(equalTo: newWorkoutLabel.topAnchor, constant: 0),
             closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            closeButton.heightAnchor.constraint(equalToConstant: 30),
-            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            closeButton.heightAnchor.constraint(equalToConstant: 15),
+            closeButton.widthAnchor.constraint(equalToConstant: 15),
             
             nameLabel.topAnchor.constraint(equalTo: newWorkoutLabel.bottomAnchor, constant: 10),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),

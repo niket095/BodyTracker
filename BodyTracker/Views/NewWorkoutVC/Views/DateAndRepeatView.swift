@@ -9,19 +9,21 @@ import UIKit
 
 class DateAndRepeatView: UIView {
     
-    private let backgroundDateAndRepeat: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.specialDirtyWhite
-        imageView.layer.cornerRadius = 10
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
     
-    private let dateLabel = UILabel(text: "Дата", color: .specialGray, font: UIFont.robotoRegular(size: 18))
+    private let dateLabel = UILabel(text: "Дата",
+                                    color: .specialGray,
+                                    font: UIFont.robotoRegular(size: 18),
+                                    alignment: .left)
     
-    private let repeatEverySevenDaysLabel = UILabel(text: "Повторять каждые 7 дней", color: .specialGray, font: UIFont.robotoRegular(size: 18))
+    private let repeatEverySevenDaysLabel = UILabel(text: "Повторять каждые 7 дней",
+                                                    color: .specialGray,
+                                                    font: UIFont.robotoRegular(size: 18),
+                                                    alignment: .left)
     
-    private let currentDateLabel = UILabel(text: "12-12-2024", color: .specialGray, font: UIFont.robotoRegular(size: 20))
+    private let currentDateLabel = UILabel(text: "12-12-2024",
+                                           color: .specialGray,
+                                           font: UIFont.robotoRegular(size: 20),
+                                           alignment: .right)
     
     private let repeatEverSevwnDaysSwitch: UISwitch = {
         let switchButton = UISwitch()
@@ -30,9 +32,16 @@ class DateAndRepeatView: UIView {
         return switchButton
     }()
     
+    private let dateStackView: UIStackView = {
+       let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
         
         setupView()
         dateCurrent()
@@ -45,8 +54,9 @@ class DateAndRepeatView: UIView {
     }
     
     private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .specialDirtyWhite
         
-        addSubview(backgroundDateAndRepeat)
         addSubview(dateLabel)
         addSubview(repeatEverySevenDaysLabel)
         addSubview(currentDateLabel)
@@ -65,10 +75,6 @@ class DateAndRepeatView: UIView {
 extension DateAndRepeatView {
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            backgroundDateAndRepeat.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            backgroundDateAndRepeat.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            backgroundDateAndRepeat.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            backgroundDateAndRepeat.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             
             dateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17),
             dateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),

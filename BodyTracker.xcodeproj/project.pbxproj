@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1D8F2C2D7B718A00CFECD9 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D8F2B2D7B718A00CFECD9 /* UIStackView + Extension.swift */; };
 		CE2C3B302D5FC30500A4BA16 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C3B2F2D5FC30500A4BA16 /* CalendarView.swift */; };
 		CE2C3B322D5FC3EA00A4BA16 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C3B312D5FC3EA00A4BA16 /* WeatherView.swift */; };
 		CE3F6DBB2D74E4DF00ED4033 /* DateAndRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F6DBA2D74E4DF00ED4033 /* DateAndRepeatView.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE1D8F2B2D7B718A00CFECD9 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		CE2C3B2F2D5FC30500A4BA16 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		CE2C3B312D5FC3EA00A4BA16 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		CE3F6DBA2D74E4DF00ED4033 /* DateAndRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndRepeatView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				CE3F6DBA2D74E4DF00ED4033 /* DateAndRepeatView.swift */,
 				CE971B762D761D7A003C38D9 /* RepsOrTimerView.swift */,
+				CE95464E2D665416001E5A8F /* MainVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -97,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				CE3F6DB82D74E44C00ED4033 /* NewWorkoutVC */,
-				CE95464E2D665416001E5A8F /* MainVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -110,6 +112,7 @@
 				CE8F549C2D481718008C5B6E /* UIColor + Extension.swift */,
 				CE9546512D665EB9001E5A8F /* Date + Extension.swift */,
 				CE49BB6B2D6FA0FB005BFBEB /* UILabel + Extension.swift */,
+				CE1D8F2B2D7B718A00CFECD9 /* UIStackView + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				CE4796292D5155BF00B11AFB /* MainTabBarController.swift in Sources */,
 				CE49BB6C2D6FA0FB005BFBEB /* UILabel + Extension.swift in Sources */,
 				CE2C3B322D5FC3EA00A4BA16 /* WeatherView.swift in Sources */,
+				CE1D8F2C2D7B718A00CFECD9 /* UIStackView + Extension.swift in Sources */,
 				CE2C3B302D5FC30500A4BA16 /* CalendarView.swift in Sources */,
 				CEF400052D401A7B009B6005 /* AppDelegate.swift in Sources */,
 				CEF400072D401A7B009B6005 /* SceneDelegate.swift in Sources */,
