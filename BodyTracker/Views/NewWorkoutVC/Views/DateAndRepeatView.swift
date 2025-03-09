@@ -15,17 +15,25 @@ class DateAndRepeatView: UIView {
                                     font: UIFont.robotoRegular(size: 18),
                                     alignment: .left)
     
-    private let repeatEverySevenDaysLabel = UILabel(text: "Повторять каждые 7 дней",
+    private let repeatLabel = UILabel(text: "Повторять каждые 7 дней",
                                                     color: .specialGray,
                                                     font: UIFont.robotoRegular(size: 18),
                                                     alignment: .left)
     
-    private let currentDateLabel = UILabel(text: "12-12-2024",
-                                           color: .specialGray,
-                                           font: UIFont.robotoRegular(size: 20),
-                                           alignment: .right)
+//    private let currentDateLabel = UILabel(text: "12-12-2024",
+//                                           color: .specialGray,
+//                                           font: UIFont.robotoRegular(size: 20),
+//                                           alignment: .right)
+//
+    private let datePicker: UIDatePicker = {
+       let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.tintColor = .red
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        return datePicker
+    }()
     
-    private let repeatEverSevwnDaysSwitch: UISwitch = {
+    private let repeatSwitch: UISwitch = {
         let switchButton = UISwitch()
         switchButton.onTintColor = .specialGreen
         switchButton.translatesAutoresizingMaskIntoConstraints = false
@@ -40,11 +48,13 @@ class DateAndRepeatView: UIView {
         return stackView
     }()
     
+    private var repeatStackView = UIStackView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupStackView()
         setupView()
-        dateCurrent()
         setConstraints()
         addShadowOnView()
     }
@@ -57,39 +67,58 @@ class DateAndRepeatView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .specialDirtyWhite
         
-        addSubview(dateLabel)
-        addSubview(repeatEverySevenDaysLabel)
-        addSubview(currentDateLabel)
-        addSubview(repeatEverSevwnDaysSwitch)
+//        addSubview(dateLabel)
+//        addSubview(repeatLabel)
+//        addSubview(datePicker)
+//        addSubview(repeatSwitch)
+        addSubview(dateStackView)
+        addSubview(repeatStackView)
     }
     
-    private func dateCurrent() {
-        let currentDate = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.YYYY"
+    private func setupStackView() {
+        dateStackView.addArrangedSubview(dateLabel)
+        dateStackView.addArrangedSubview(datePicker)
         
-        self.currentDateLabel.text = formatter.string(from: currentDate)
+        repeatStackView = UIStackView(arrangedSubviews: [repeatLabel,
+                                                         repeatSwitch],
+                                      axis: .horizontal,
+                                      spacing: 10)
     }
+    
+//    private func dateCurrent() {
+//        let currentDate = Date()
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "dd.MM.YYYY"
+//
+//        self.currentDateLabel.text = formatter.string(from: currentDate)
+//    }
 }
 
 extension DateAndRepeatView {
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            dateStackView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            dateStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
+            dateStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
             
-            dateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17),
-            dateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            dateLabel.heightAnchor.constraint(equalToConstant: 21),
+            repeatStackView.topAnchor.constraint(equalTo: dateStackView.bottomAnchor, constant: 10),
+            repeatStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
+            repeatStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
             
-            repeatEverySevenDaysLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 13),
-            repeatEverySevenDaysLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            repeatEverySevenDaysLabel.heightAnchor.constraint(equalToConstant: 21),
-            
-            currentDateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17),
-            currentDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            currentDateLabel.heightAnchor.constraint(equalToConstant: 28),
-            
-            repeatEverSevwnDaysSwitch.topAnchor.constraint(equalTo: repeatEverySevenDaysLabel.topAnchor, constant: 0),
-            repeatEverSevwnDaysSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+//            dateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17),
+//            dateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+//            dateLabel.heightAnchor.constraint(equalToConstant: 21),
+//
+//            repeatLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 13),
+//            repeatLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+//            repeatLabel.heightAnchor.constraint(equalToConstant: 21),
+//
+//            datePicker.topAnchor.constraint(equalTo: topAnchor, constant: 17),
+//            datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+//            datePicker.heightAnchor.constraint(equalToConstant: 28),
+//
+//            repeatSwitch.topAnchor.constraint(equalTo: repeatLabel.topAnchor, constant: 0),
+//            repeatSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
 }
