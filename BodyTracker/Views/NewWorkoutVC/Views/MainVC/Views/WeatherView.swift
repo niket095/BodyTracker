@@ -9,14 +9,6 @@ import UIKit
 
 class WeatherView: UIView {
     
-    private let backgroundPluginWeather: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.specialWhite
-        imageView.layer.cornerRadius = 10
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
     private let imagePluginWeather: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: Constants.Images.weatherImage)
@@ -46,7 +38,6 @@ class WeatherView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
         
         setupView()
         setConstraints()
@@ -58,8 +49,10 @@ class WeatherView: UIView {
     }
     
     private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .specialWhite
+        layer.cornerRadius = Constants.radiusCorner
         
-        addSubview(backgroundPluginWeather)
         addSubview(weatherLabel)
         addSubview(descriptionWeatherLabel)
         addSubview(imagePluginWeather)
@@ -69,24 +62,20 @@ class WeatherView: UIView {
 extension WeatherView {
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            backgroundPluginWeather.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            backgroundPluginWeather.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            backgroundPluginWeather.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            backgroundPluginWeather.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            
-            imagePluginWeather.topAnchor.constraint(equalTo: backgroundPluginWeather.topAnchor, constant: 9),
-            imagePluginWeather.leadingAnchor.constraint(equalTo: backgroundPluginWeather.leadingAnchor, constant: 13),
+            imagePluginWeather.topAnchor.constraint(equalTo: topAnchor, constant: 9),
+            imagePluginWeather.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 13),
             imagePluginWeather.heightAnchor.constraint(equalToConstant: 62),
             imagePluginWeather.widthAnchor.constraint(equalToConstant: 62),
             
-            weatherLabel.topAnchor.constraint(equalTo: backgroundPluginWeather.topAnchor, constant: 9),
+            weatherLabel.topAnchor.constraint(equalTo: topAnchor, constant: 9),
             weatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 61),
+            weatherLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -61),
             weatherLabel.heightAnchor.constraint(equalToConstant: 21),
             
             descriptionWeatherLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 1),
-            descriptionWeatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 1),
-            descriptionWeatherLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 1),
-            descriptionWeatherLabel.bottomAnchor.constraint(equalTo: backgroundPluginWeather.bottomAnchor, constant: -1),
+            descriptionWeatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 14),
+            descriptionWeatherLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
+            descriptionWeatherLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1),
         ])
     }
 }

@@ -20,11 +20,6 @@ class DateAndRepeatView: UIView {
                                                     font: UIFont.robotoRegular(size: 18),
                                                     alignment: .left)
     
-//    private let currentDateLabel = UILabel(text: "12-12-2024",
-//                                           color: .specialGray,
-//                                           font: UIFont.robotoRegular(size: 20),
-//                                           alignment: .right)
-//
     private let datePicker: UIDatePicker = {
        let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -63,18 +58,6 @@ class DateAndRepeatView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .specialDirtyWhite
-        
-//        addSubview(dateLabel)
-//        addSubview(repeatLabel)
-//        addSubview(datePicker)
-//        addSubview(repeatSwitch)
-        addSubview(dateStackView)
-        addSubview(repeatStackView)
-    }
-    
     private func setupStackView() {
         dateStackView.addArrangedSubview(dateLabel)
         dateStackView.addArrangedSubview(datePicker)
@@ -85,13 +68,14 @@ class DateAndRepeatView: UIView {
                                       spacing: 10)
     }
     
-//    private func dateCurrent() {
-//        let currentDate = Date()
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "dd.MM.YYYY"
-//
-//        self.currentDateLabel.text = formatter.string(from: currentDate)
-//    }
+    private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .specialDirtyWhite
+        layer.cornerRadius = Constants.radiusCorner
+        
+        addSubview(dateStackView)
+        addSubview(repeatStackView)
+    }
 }
 
 extension DateAndRepeatView {
@@ -104,21 +88,6 @@ extension DateAndRepeatView {
             repeatStackView.topAnchor.constraint(equalTo: dateStackView.bottomAnchor, constant: 10),
             repeatStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
             repeatStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
-            
-//            dateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17),
-//            dateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-//            dateLabel.heightAnchor.constraint(equalToConstant: 21),
-//
-//            repeatLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 13),
-//            repeatLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-//            repeatLabel.heightAnchor.constraint(equalToConstant: 21),
-//
-//            datePicker.topAnchor.constraint(equalTo: topAnchor, constant: 17),
-//            datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-//            datePicker.heightAnchor.constraint(equalToConstant: 28),
-//
-//            repeatSwitch.topAnchor.constraint(equalTo: repeatLabel.topAnchor, constant: 0),
-//            repeatSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
 }

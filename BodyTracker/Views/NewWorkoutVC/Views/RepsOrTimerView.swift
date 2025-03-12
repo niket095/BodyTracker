@@ -125,6 +125,7 @@ class RepsOrTimerView: UIView {
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .specialDirtyWhite
+        layer.cornerRadius = Constants.radiusCorner
         
         repsSlider.addTarget(self, action: #selector(repsSliderChanged), for: .valueChanged)
         setsSlider.addTarget(self, action: #selector(setsSliderChanged), for: .valueChanged)

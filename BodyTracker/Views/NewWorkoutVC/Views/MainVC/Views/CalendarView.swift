@@ -9,14 +9,6 @@ import UIKit
 
 class CalendarView: UIView {
     
-    private let backgroundCalendar: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.specialGreen
-        imageView.layer.cornerRadius = 10
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
     private let calendarCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -45,8 +37,9 @@ class CalendarView: UIView {
     
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .specialGreen
+        layer.cornerRadius = Constants.radiusCorner
         
-        addSubview(backgroundCalendar)
         addSubview(calendarCollectionView)
     }
     
@@ -58,15 +51,10 @@ class CalendarView: UIView {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            backgroundCalendar.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            backgroundCalendar.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            backgroundCalendar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            backgroundCalendar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            
-            calendarCollectionView.topAnchor.constraint(equalTo: backgroundCalendar.topAnchor, constant: 5),
-            calendarCollectionView.bottomAnchor.constraint(equalTo: backgroundCalendar.bottomAnchor, constant: -5),
-            calendarCollectionView.trailingAnchor.constraint(equalTo: backgroundCalendar.trailingAnchor, constant: -10),
-            calendarCollectionView.leadingAnchor.constraint(equalTo: backgroundCalendar.leadingAnchor, constant: 100)
+            calendarCollectionView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            calendarCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            calendarCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            calendarCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100)
         ])
     }
 }
