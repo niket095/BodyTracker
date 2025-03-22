@@ -10,11 +10,10 @@ import UIKit
 extension UIFont{
     //Roboto
     static func robotoRegular(size: CGFloat) -> UIFont {
-            return UIFont.init(name: "Roboto-Regular", size: size) ?? UIFont.systemFont(ofSize: size)
-        }
+        return UIFont.init(name: "Roboto-Regular", size: size) ?? UIFont.systemFont(ofSize: size)
+    }
     
     static func robotoBold(size: CGFloat) -> UIFont {
-            return UIFont.init(name: "Roboto-Bold", size: size) ?? UIFont.systemFont(ofSize: size)
-        }
-
+        return UIFont.init(name: "Roboto-Bold", size: size) ?? UIFont.systemFont(ofSize: size)
+    }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    //MARK: - UI Elemetns
     private let userLabel: UILabel = {
         let label = UILabel()
         label.text = "Новый пользователь"
@@ -90,6 +91,7 @@ class MainViewController: UIViewController {
         userPhotoImage.layer.cornerRadius = userPhotoImage.frame.height/2
     }
     
+    //MARK: - Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,7 +113,11 @@ class MainViewController: UIViewController {
         view.addSubview(descriptionTrainingLabel)
     }
 }
+
+//
 extension MainViewController{
+    
+    //MARK: - Constraints
     private func setConstraints() {
         NSLayoutConstraint.activate([
             userPhotoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -156,9 +162,8 @@ extension MainViewController{
             descriptionTrainingLabel.heightAnchor.constraint(equalToConstant: 21)
         ])
     }
-}
-
-extension MainViewController {
+    
+    //MARK: - Target
     private func setTarget() {
         addWorkButton.addTarget(self, action: #selector(addWorkButtonAction), for: .touchUpInside)
     }

@@ -14,6 +14,7 @@ enum Constants {
         static let noNameImage = "noName"
         static let weatherImage = "imageWeather"
         static let peopleImage = "people"
+        static let closeImage = "close"
     }
 }
 

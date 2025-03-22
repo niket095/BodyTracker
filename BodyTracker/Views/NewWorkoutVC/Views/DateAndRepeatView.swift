@@ -9,19 +9,19 @@ import UIKit
 
 class DateAndRepeatView: UIView {
     
-    
+    //MARK: - UI Elements
     private let dateLabel = UILabel(text: "Дата",
                                     color: .specialGray,
                                     font: UIFont.robotoRegular(size: 18),
                                     alignment: .left)
     
     private let repeatLabel = UILabel(text: "Повторять каждые 7 дней",
-                                                    color: .specialGray,
-                                                    font: UIFont.robotoRegular(size: 18),
-                                                    alignment: .left)
+                                      color: .specialGray,
+                                      font: UIFont.robotoRegular(size: 18),
+                                      alignment: .left)
     
     private let datePicker: UIDatePicker = {
-       let datePicker = UIDatePicker()
+        let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.tintColor = .red
         datePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class DateAndRepeatView: UIView {
     }()
     
     private let dateStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +45,7 @@ class DateAndRepeatView: UIView {
     
     private var repeatStackView = UIStackView()
     
+    //MARK: - Life cicle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -58,6 +59,7 @@ class DateAndRepeatView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Setup stack
     private func setupStackView() {
         dateStackView.addArrangedSubview(dateLabel)
         dateStackView.addArrangedSubview(datePicker)
@@ -78,6 +80,7 @@ class DateAndRepeatView: UIView {
     }
 }
 
+//MARK: - Constraints
 extension DateAndRepeatView {
     private func setConstraints() {
         NSLayoutConstraint.activate([
@@ -87,7 +90,7 @@ extension DateAndRepeatView {
             
             repeatStackView.topAnchor.constraint(equalTo: dateStackView.bottomAnchor, constant: 10),
             repeatStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
-            repeatStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
+            repeatStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17)
         ])
     }
 }

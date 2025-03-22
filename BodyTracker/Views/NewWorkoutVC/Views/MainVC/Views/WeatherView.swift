@@ -9,6 +9,7 @@ import UIKit
 
 class WeatherView: UIView {
     
+    //MARK: - UI Elemetns
     private let imagePluginWeather: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: Constants.Images.weatherImage)
@@ -36,6 +37,7 @@ class WeatherView: UIView {
         return label
     }()
     
+    //MARK: - Life cicle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -59,6 +61,7 @@ class WeatherView: UIView {
     }
 }
 
+//MARK: - Constraints
 extension WeatherView {
     private func setConstraints() {
         NSLayoutConstraint.activate([
@@ -75,7 +78,7 @@ extension WeatherView {
             descriptionWeatherLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 1),
             descriptionWeatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 14),
             descriptionWeatherLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
-            descriptionWeatherLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1),
+            descriptionWeatherLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1)
         ])
     }
 }

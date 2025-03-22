@@ -37,7 +37,6 @@ extension Date {
             weekArray[1].append("\(day)")
             weekArray[0].append(weekday)
         }
-        
         return weekArray
     }
 }

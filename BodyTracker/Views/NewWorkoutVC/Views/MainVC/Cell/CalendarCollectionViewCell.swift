@@ -11,6 +11,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     
     static let cellID = "CalendarCollectionViewCell"
     
+    //MARK: - UI Elements
     private let dayOfWeekLabel: UILabel = {
         let label = UILabel()
         label.text = "We"
@@ -29,6 +30,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    //MARK: - Life cicle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -67,6 +69,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     }
 }
 
+//MARK: - Constraints
 extension CalendarCollectionViewCell{
     private func setConstraints() {
         NSLayoutConstraint.activate([
