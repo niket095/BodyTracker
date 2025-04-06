@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class NewWorkoutViewController: UIViewController {
     
@@ -26,7 +27,7 @@ class NewWorkoutViewController: UIViewController {
     
     private let closeButton: UIButton = {
         let button = UIButton(type: .custom)
-        let image = UIImage(named: Constants.Images.closeImage)
+        let image = UIImage(resource: .close)
         button.setBackgroundImage(image, for: .normal)
         button.setTitleColor(UIColor.specialBackgoundColor, for: .normal)
         button.clipsToBounds = true
@@ -172,5 +173,22 @@ extension NewWorkoutViewController: UITextViewDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
+    }
+}
+
+struct NewWorkoutViewControllerProviders: PreviewProvider {
+    static var previews: some View {
+        ContainerView().edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+    }
+    
+    struct ContainerView: UIViewControllerRepresentable {
+        let viewController = NewWorkoutViewController()
+        
+        func makeUIViewController(context: UIViewControllerRepresentableContext<NewWorkoutViewControllerProviders.ContainerView>) -> NewWorkoutViewController {
+            return viewController
+        }
+        
+        func updateUIViewController(_ uiViewController: NewWorkoutViewControllerProviders.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<NewWorkoutViewControllerProviders.ContainerView>) {
+        }
     }
 }

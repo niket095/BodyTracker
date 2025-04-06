@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class MainViewController: UIViewController {
     
@@ -49,7 +50,7 @@ class MainViewController: UIViewController {
     
     private let userPhotoImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Constants.Images.noNameImage)
+        imageView.image = UIImage(resource: .noName)
         imageView.backgroundColor = .specialLightGrey
         imageView.layer.borderWidth = 3
         imageView.layer.masksToBounds = false
@@ -61,7 +62,7 @@ class MainViewController: UIViewController {
     
     private let peopleImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Constants.Images.peopleImage)
+        imageView.image = UIImage(resource: .people)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.addShadowOnView()
         return imageView
@@ -70,7 +71,7 @@ class MainViewController: UIViewController {
     private let addWorkButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
         configuration.title = "Добавить"
-        configuration.image = UIImage (systemName: "plus")
+        configuration.image = UIImage(systemName: "plus")
         configuration.imagePlacement = .top
         configuration.imagePadding = 10
         configuration.baseBackgroundColor = .specialYellow
@@ -80,6 +81,18 @@ class MainViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addShadowOnView()
         return button
+    }()
+    
+    private let workoutTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = UIColor.specialBackgoundColor
+        tableView.separatorStyle = .none
+        tableView.bounces = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.isHidden = false
+        tableView.allowsSelection = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
     
     private let weatherView = WeatherView()
@@ -98,6 +111,7 @@ class MainViewController: UIViewController {
         setupView()
         setConstraints()
         setTarget()
+        setupTableView()
     }
     
     private func setupView() {
@@ -111,10 +125,19 @@ class MainViewController: UIViewController {
         view.addSubview(peopleImage)
         view.addSubview(trainingLabel)
         view.addSubview(descriptionTrainingLabel)
+        view.addSubview(workoutTableView)
+    }
+    
+    private func setupTableView() {
+        workoutTableView.delegate = self
+        workoutTableView.dataSource = self
+        
+        workoutTableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: WorkoutTableViewCell.cellID)
     }
 }
 
-//
+
+
 extension MainViewController{
     
     //MARK: - Constraints
@@ -144,10 +167,15 @@ extension MainViewController{
             weatherView.trailingAnchor.constraint(equalTo: addWorkButton.leadingAnchor, constant: -9),
             weatherView.heightAnchor.constraint(equalToConstant: 80),
             
-            workoutTodayLabel.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 11),
-            workoutTodayLabel.leadingAnchor.constraint(equalTo: weatherView.leadingAnchor, constant: 0),
+//            workoutTodayLabel.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 11),
+//            workoutTodayLabel.leadingAnchor.constraint(equalTo: weatherView.leadingAnchor, constant: 0),
             
-            peopleImage.topAnchor.constraint(equalTo: workoutTodayLabel.bottomAnchor, constant: 24),
+            workoutTableView.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 5),
+            workoutTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            workoutTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            workoutTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            peopleImage.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 24),
             peopleImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             peopleImage.heightAnchor.constraint(equalToConstant: 300),
             peopleImage.widthAnchor.constraint(equalToConstant: 251),
@@ -172,5 +200,64 @@ extension MainViewController{
         let vc = NewWorkoutViewController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+    }
+}
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WorkoutTableViewCell.cellID, for: indexPath) as? WorkoutTableViewCell else { return UITableViewCell()}
+        
+        cell.cellConfigure(repsOrTimer: 3, sets: 4)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        120
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+                
+                let label = UILabel()
+                label.frame = CGRect.init(x: 12, y: -35, width: headerView.frame.width-10, height: headerView.frame.height-10)
+                label.text = "Тренировка сегодня"
+                label.font = .robotoRegular(size: 14)
+                label.textColor = .specialBeige
+                
+                headerView.addSubview(label)
+                
+                return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 2
+        }
+}
+
+struct AuthViewControllerProvider: PreviewProvider {
+    static var previews: some View {
+        ContainerView().edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+    }
+    
+    struct ContainerView: UIViewControllerRepresentable {
+        let viewController = MainViewController()
+        
+        func makeUIViewController(context: UIViewControllerRepresentableContext<AuthViewControllerProvider.ContainerView>) -> MainViewController {
+            return viewController
+        }
+        
+        func updateUIViewController(_ uiViewController: AuthViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<AuthViewControllerProvider.ContainerView>) {
+        }
+    }
+}
+
+extension MainViewController: WorkoutTableViewCellDelegate {
+    func actionOfStartButton(text: String) {
+        print(text)
     }
 }

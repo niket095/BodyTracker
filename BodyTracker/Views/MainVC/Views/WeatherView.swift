@@ -12,7 +12,7 @@ class WeatherView: UIView {
     //MARK: - UI Elemetns
     private let imagePluginWeather: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Constants.Images.weatherImage)
+        imageView.image = UIImage(resource: .imageWeather)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
