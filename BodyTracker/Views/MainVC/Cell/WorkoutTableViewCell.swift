@@ -8,11 +8,11 @@
 import UIKit
 
 protocol WorkoutTableViewCellDelegate: AnyObject {
-    func actionOfStartButton(text: String)
+    func actionOfStartButton()
 }
 
 class WorkoutTableViewCell: UITableViewCell {
-    weak var delegate: WorkoutTableViewCellDelegate?
+    weak var cellWorkoutDelegate: WorkoutTableViewCellDelegate?
     
     static let cellID = "WorkoutTableViewCell"
     
@@ -77,6 +77,7 @@ class WorkoutTableViewCell: UITableViewCell {
         
         setupCell()
         setConstraints()
+        setTarget()
     }
     
     required init?(coder: NSCoder) {
@@ -92,7 +93,6 @@ class WorkoutTableViewCell: UITableViewCell {
     }
     
     private func setupCell() {
-        contentView.addSubview(startButton)
         addShadowOnView()
         backgroundColor = .clear
         layer.cornerRadius = Constants.radiusCorner
@@ -106,7 +106,7 @@ class WorkoutTableViewCell: UITableViewCell {
         addSubview(cellImage)
         addSubview(nameLabel)
         addSubview(labelStackView)
-        addSubview(startButton)
+        contentView.addSubview(startButton)
     }
     
     //MARK: - Constraints
@@ -143,11 +143,7 @@ class WorkoutTableViewCell: UITableViewCell {
     }
     
     @objc func startWorkout() {
-        WorkoutTableViewCellDelegate.self
-//        let newWoroutVC = NewWorkoutViewController()
-//        newWoroutVC.modalPresentationStyle = .fullScreen
-//        present(newWoroutVC, animated: true)
-        Swift.print("Button Tapped")
+        cellWorkoutDelegate?.actionOfStartButton()
     }
 }
 

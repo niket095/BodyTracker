@@ -212,7 +212,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WorkoutTableViewCell.cellID, for: indexPath) as? WorkoutTableViewCell else { return UITableViewCell()}
         
         cell.cellConfigure(repsOrTimer: 3, sets: 4)
-        
+        cell.cellWorkoutDelegate = self
         return cell
     }
     
@@ -257,7 +257,7 @@ struct AuthViewControllerProvider: PreviewProvider {
 }
 
 extension MainViewController: WorkoutTableViewCellDelegate {
-    func actionOfStartButton(text: String) {
-        print(text)
+    func actionOfStartButton() {
+        print("cellWorkoutDelegate")
     }
 }
