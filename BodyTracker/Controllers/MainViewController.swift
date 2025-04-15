@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import CoreLocation
 
 class MainViewController: UIViewController {
     
@@ -98,6 +99,11 @@ class MainViewController: UIViewController {
     private let weatherView = WeatherView()
     private let calendarView = CalendarView()
     
+    private let locationManager = CLLocationManager()
+    private let currentLocation: CLLocation? = nil
+    private var latitude: CLLocationDegrees?
+    private var longtitude: CLLocationDegrees?
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -134,9 +140,19 @@ class MainViewController: UIViewController {
         
         workoutTableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: WorkoutTableViewCell.cellID)
     }
+    
+    private func fetchWeatherFromGeolocation(lat: String, long: String) {
+        WeatherNetwork.shared.fetchCurrentWeather(lat: lat, long: long) { [weak self] (weather) in
+            guard let self = self else { return }
+            
+            self.weatherView.temp = String(weather.main.temp)
+            self.weatherView.weather = String(weather.weather[0].main)
+            
+            
+            self.weatherView.setupWeather()
+        }
+    }
 }
-
-
 
 extension MainViewController{
     
@@ -166,9 +182,6 @@ extension MainViewController{
             weatherView.leadingAnchor.constraint(equalTo: calendarView.leadingAnchor, constant: 0),
             weatherView.trailingAnchor.constraint(equalTo: addWorkButton.leadingAnchor, constant: -9),
             weatherView.heightAnchor.constraint(equalToConstant: 80),
-            
-//            workoutTodayLabel.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 11),
-//            workoutTodayLabel.leadingAnchor.constraint(equalTo: weatherView.leadingAnchor, constant: 0),
             
             workoutTableView.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 5),
             workoutTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -259,5 +272,21 @@ struct AuthViewControllerProvider: PreviewProvider {
 extension MainViewController: WorkoutTableViewCellDelegate {
     func actionOfStartButton() {
         print("cellWorkoutDelegate")
+    }
+}
+
+extension MainViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        manager.stopUpdatingLocation()
+        manager.delegate = nil
+        
+        guard let location = locations.first?.coordinate else { return }
+        latitude = location.latitude
+        longtitude = location.longitude
+        
+        if let lat = latitude?.description, let long = longtitude?.description {
+            fetchWeatherFromGeolocation(lat: lat, long: long)
+        }
     }
 }

@@ -10,14 +10,23 @@ import UIKit
 class WeatherView: UIView {
     
     //MARK: - UI Elemetns
-    private let imagePluginWeather: UIImageView = {
+     let imagePluginWeather: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(resource: .imageWeather)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let weatherLabel: UILabel = {
+    let tempLabel: UILabel = {
+        let label = UILabel()
+        label.text = "25 C"
+        label.textColor = UIColor.specialGray
+        label.font = UIFont.robotoBold(size: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+     let weatherLabel: UILabel = {
         let label = UILabel()
         label.text = "Погода"
         label.textColor = UIColor.specialGray
@@ -26,7 +35,7 @@ class WeatherView: UIView {
         return label
     }()
     
-    private let descriptionWeatherLabel: UILabel = {
+     let descriptionWeatherLabel: UILabel = {
         let label = UILabel()
         label.text = "good weather to exercise outside, do not forget to bring water with you"
         label.numberOfLines = 0
@@ -37,6 +46,10 @@ class WeatherView: UIView {
         return label
     }()
     
+    public var temp: String = ""
+    public var descriptionWeather: String = ""
+    public var weather: String = ""
+    
     //MARK: - Life cicle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,6 +57,7 @@ class WeatherView: UIView {
         setupView()
         setConstraints()
         addShadowOnView()
+        setupWeather()
     }
     
     required init?(coder: NSCoder) {
@@ -58,6 +72,13 @@ class WeatherView: UIView {
         addSubview(weatherLabel)
         addSubview(descriptionWeatherLabel)
         addSubview(imagePluginWeather)
+        addSubview(tempLabel)
+    }
+    
+    public func setupWeather() {
+        tempLabel.text = temp
+        weatherLabel.text = weather
+        descriptionWeatherLabel.text =  descriptionWeather
     }
 }
 
@@ -69,6 +90,11 @@ extension WeatherView {
             imagePluginWeather.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 13),
             imagePluginWeather.heightAnchor.constraint(equalToConstant: 62),
             imagePluginWeather.widthAnchor.constraint(equalToConstant: 62),
+            
+            tempLabel.topAnchor.constraint(equalTo: imagePluginWeather.topAnchor, constant: 0),
+            tempLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: -5),
+            tempLabel.heightAnchor.constraint(equalToConstant: 21),
+            tempLabel.widthAnchor.constraint(equalToConstant: 40),
             
             weatherLabel.topAnchor.constraint(equalTo: topAnchor, constant: 9),
             weatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 61),
