@@ -46,10 +46,6 @@ class WeatherView: UIView {
         return label
     }()
     
-    public var temp: String = ""
-    public var descriptionWeather: String = ""
-    public var weather: String = ""
-    
     //MARK: - Life cicle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +53,6 @@ class WeatherView: UIView {
         setupView()
         setConstraints()
         addShadowOnView()
-        setupWeather()
     }
     
     required init?(coder: NSCoder) {
@@ -75,7 +70,7 @@ class WeatherView: UIView {
         addSubview(tempLabel)
     }
     
-    public func setupWeather() {
+    public func setupWeather(temp: String, weather: String, descriptionWeather: String) {
         tempLabel.text = temp
         weatherLabel.text = weather
         descriptionWeatherLabel.text =  descriptionWeather
@@ -91,15 +86,15 @@ extension WeatherView {
             imagePluginWeather.heightAnchor.constraint(equalToConstant: 62),
             imagePluginWeather.widthAnchor.constraint(equalToConstant: 62),
             
-            tempLabel.topAnchor.constraint(equalTo: imagePluginWeather.topAnchor, constant: 0),
-            tempLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: -5),
-            tempLabel.heightAnchor.constraint(equalToConstant: 21),
-            tempLabel.widthAnchor.constraint(equalToConstant: 40),
-            
             weatherLabel.topAnchor.constraint(equalTo: topAnchor, constant: 9),
             weatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 61),
             weatherLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -61),
             weatherLabel.heightAnchor.constraint(equalToConstant: 21),
+            
+            tempLabel.topAnchor.constraint(equalTo: imagePluginWeather.topAnchor, constant: 0),
+            tempLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 5),
+            tempLabel.trailingAnchor.constraint(equalTo: weatherLabel.leadingAnchor, constant: -5),
+           
             
             descriptionWeatherLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 1),
             descriptionWeatherLabel.leadingAnchor.constraint(equalTo: imagePluginWeather.trailingAnchor, constant: 14),

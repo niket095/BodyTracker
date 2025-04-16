@@ -21,15 +21,6 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    private let workoutTodayLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Тренировка сегодня"
-        label.textColor = UIColor.specialBeige
-        label.font = UIFont.robotoRegular(size: 14)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private let trainingLabel: UILabel = {
         let label = UILabel()
         label.text = "Нет тренировки"
@@ -120,6 +111,18 @@ class MainViewController: UIViewController {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        startLocationUpdate()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
     private func setupView() {
         view.backgroundColor = UIColor.specialBackgoundColor
         view.addSubview(calendarView)
@@ -127,7 +130,6 @@ class MainViewController: UIViewController {
         view.addSubview(userLabel)
         view.addSubview(weatherView)
         view.addSubview(addWorkButton)
-        view.addSubview(workoutTodayLabel)
         view.addSubview(peopleImage)
         view.addSubview(trainingLabel)
         view.addSubview(descriptionTrainingLabel)
@@ -141,15 +143,26 @@ class MainViewController: UIViewController {
         workoutTableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: WorkoutTableViewCell.cellID)
     }
     
+    private func startLocationUpdate() {
+        print("startLocationUpdate")
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
     private func fetchWeatherFromGeolocation(lat: String, long: String) {
         WeatherNetwork.shared.fetchCurrentWeather(lat: lat, long: long) { [weak self] (weather) in
             guard let self = self else { return }
             
-            self.weatherView.temp = String(weather.main.temp)
-            self.weatherView.weather = String(weather.weather[0].main)
-            
-            
-            self.weatherView.setupWeather()
+            DispatchQueue.main.async {
+                
+                let temp = String(weather.main.temp)
+                let weather = String(weather.weather[0].main)
+                
+                self.weatherView.setupWeather(temp: temp, weather: weather, descriptionWeather: weather)
+                
+            }
         }
     }
 }
@@ -235,21 +248,21 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
-                
-                let label = UILabel()
-                label.frame = CGRect.init(x: 12, y: -35, width: headerView.frame.width-10, height: headerView.frame.height-10)
-                label.text = "Тренировка сегодня"
-                label.font = .robotoRegular(size: 14)
-                label.textColor = .specialBeige
-                
-                headerView.addSubview(label)
-                
-                return headerView
+        
+        let label = UILabel()
+        label.frame = CGRect.init(x: 12, y: -35, width: headerView.frame.width-10, height: headerView.frame.height-10)
+        label.text = "Тренировка сегодня"
+        label.font = .robotoRegular(size: 14)
+        label.textColor = .specialBeige
+        
+        headerView.addSubview(label)
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 2
-        }
+        return 2
+    }
 }
 
 struct AuthViewControllerProvider: PreviewProvider {
