@@ -4,6 +4,7 @@
 //
 //  Created by Nikita Putilov on 21.01.2025.
 //
+//
 
 import UIKit
 import SwiftUI
@@ -144,7 +145,6 @@ class MainViewController: UIViewController {
     }
     
     private func startLocationUpdate() {
-        print("startLocationUpdate")
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -284,7 +284,6 @@ struct AuthViewControllerProvider: PreviewProvider {
 
 extension MainViewController: WorkoutTableViewCellDelegate {
     func actionOfStartButton() {
-        print("cellWorkoutDelegate")
     }
 }
 

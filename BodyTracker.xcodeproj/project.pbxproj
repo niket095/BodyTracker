@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1124F35F2DB95D3600E4E1DB /* CollectionImageWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124F35E2DB95D3600E4E1DB /* CollectionImageWorkoutCell.swift */; };
+		1124F3622DB9613900E4E1DB /* CollectionImageWorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124F3612DB9613900E4E1DB /* CollectionImageWorkoutModel.swift */; };
 		113CB5562D9EF7720099F4AE /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5552D9EF7720099F4AE /* WorkoutTableViewCell.swift */; };
 		115D63002DA83A020064DFED /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D62FE2DA83A020064DFED /* WeatherModel.swift */; };
 		115D63012DA83A020064DFED /* WeatherImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D62FD2DA83A020064DFED /* WeatherImage.swift */; };
 		115D63022DA83A020064DFED /* WeatherNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D62FF2DA83A020064DFED /* WeatherNetwork.swift */; };
 		115D63032DA83A020064DFED /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D62FC2DA83A020064DFED /* Api.swift */; };
+		118161C42DB6CCD40050A722 /* CollectionImageWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118161C32DB6CCD40050A722 /* CollectionImageWorkoutViewController.swift */; };
 		CE1D8F2C2D7B718A00CFECD9 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D8F2B2D7B718A00CFECD9 /* UIStackView + Extension.swift */; };
 		CE2C3B302D5FC30500A4BA16 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C3B2F2D5FC30500A4BA16 /* CalendarView.swift */; };
 		CE2C3B322D5FC3EA00A4BA16 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C3B312D5FC3EA00A4BA16 /* WeatherView.swift */; };
@@ -37,11 +40,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1124F35E2DB95D3600E4E1DB /* CollectionImageWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageWorkoutCell.swift; sourceTree = "<group>"; };
+		1124F3612DB9613900E4E1DB /* CollectionImageWorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageWorkoutModel.swift; sourceTree = "<group>"; };
 		113CB5552D9EF7720099F4AE /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		115D62FC2DA83A020064DFED /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		115D62FD2DA83A020064DFED /* WeatherImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherImage.swift; sourceTree = "<group>"; };
 		115D62FE2DA83A020064DFED /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		115D62FF2DA83A020064DFED /* WeatherNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetwork.swift; sourceTree = "<group>"; };
+		118161C32DB6CCD40050A722 /* CollectionImageWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageWorkoutViewController.swift; sourceTree = "<group>"; };
 		CE1D8F2B2D7B718A00CFECD9 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		CE2C3B2F2D5FC30500A4BA16 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		CE2C3B312D5FC3EA00A4BA16 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -79,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1124F3602DB9610400E4E1DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1124F3612DB9613900E4E1DB /* CollectionImageWorkoutModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		115D62F32DA838C30064DFED /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +186,7 @@
 				CE47962A2D51598100B11AFB /* StatisticViewController.swift */,
 				CE47962C2D5159CA00B11AFB /* ProfilViewController.swift */,
 				CE49BB692D6F9F7F005BFBEB /* NewWorkoutViewController.swift */,
+				118161C32DB6CCD40050A722 /* CollectionImageWorkoutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -189,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				CE95464F2D6654A1001E5A8F /* CalendarCollectionViewCell.swift */,
+				1124F35E2DB95D3600E4E1DB /* CollectionImageWorkoutCell.swift */,
 				113CB5552D9EF7720099F4AE /* WorkoutTableViewCell.swift */,
 			);
 			path = Cell;
@@ -214,6 +230,7 @@
 		CEF400032D401A7B009B6005 /* BodyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				1124F3602DB9610400E4E1DB /* Model */,
 				CE8F549B2D4815EE008C5B6E /* Application */,
 				CE49BB662D6F986D005BFBEB /* Views */,
 				CE8F549A2D4815E2008C5B6E /* Controllers */,
@@ -309,6 +326,8 @@
 				CE47962D2D5159CA00B11AFB /* ProfilViewController.swift in Sources */,
 				CE8F54972D481591008C5B6E /* UIFont + Extension.swift in Sources */,
 				113CB5562D9EF7720099F4AE /* WorkoutTableViewCell.swift in Sources */,
+				1124F3622DB9613900E4E1DB /* CollectionImageWorkoutModel.swift in Sources */,
+				1124F35F2DB95D3600E4E1DB /* CollectionImageWorkoutCell.swift in Sources */,
 				CE47962B2D51598100B11AFB /* StatisticViewController.swift in Sources */,
 				CEF400092D401A7B009B6005 /* MainViewController.swift in Sources */,
 				CE89218E2D63AB9200BA1D10 /* UIView + Extension.swift in Sources */,
@@ -320,6 +339,7 @@
 				CE49BB6C2D6FA0FB005BFBEB /* UILabel + Extension.swift in Sources */,
 				CE2C3B322D5FC3EA00A4BA16 /* WeatherView.swift in Sources */,
 				CE1D8F2C2D7B718A00CFECD9 /* UIStackView + Extension.swift in Sources */,
+				118161C42DB6CCD40050A722 /* CollectionImageWorkoutViewController.swift in Sources */,
 				CE2C3B302D5FC30500A4BA16 /* CalendarView.swift in Sources */,
 				CEF400052D401A7B009B6005 /* AppDelegate.swift in Sources */,
 				CEF400072D401A7B009B6005 /* SceneDelegate.swift in Sources */,

@@ -4,6 +4,7 @@
 //
 //  Created by Nikita Putilov on 14.02.2025.
 //
+//
 
 import UIKit
 
@@ -68,9 +69,7 @@ extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UI
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.cellID, for: indexPath) as? CalendarCollectionViewCell else { return UICollectionViewCell() }
         
         let dateTimeZone = Date().localeDate()
-        print("дата:", dateTimeZone)
         let weekArray = dateTimeZone.getWeekArray()
-        print("weekArray:", weekArray)
         
         cell.cellConfigure(numberOfDay: weekArray[1][indexPath.item], dayOfWeek: weekArray[0][indexPath.item])
         

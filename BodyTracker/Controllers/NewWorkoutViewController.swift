@@ -4,6 +4,7 @@
 //
 //  Created by Nikita Putilov on 27.02.2025.
 //
+//
 
 import UIKit
 import SwiftUI
@@ -149,12 +150,14 @@ extension NewWorkoutViewController {
             repsOrTimerView.topAnchor.constraint(equalTo: repsOrTimerLabel.bottomAnchor, constant: 2),
             repsOrTimerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             repsOrTimerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            repsOrTimerView.heightAnchor.constraint(equalToConstant: 275),
+            repsOrTimerView.heightAnchor.constraint(equalToConstant: 500),
             
             saveButton.topAnchor.constraint(equalTo: repsOrTimerView.bottomAnchor, constant: 25),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 5),
             saveButton.heightAnchor.constraint(equalToConstant: 55)
+            
         ])
     }
     
