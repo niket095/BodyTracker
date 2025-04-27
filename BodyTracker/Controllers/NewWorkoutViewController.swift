@@ -9,7 +9,18 @@
 import UIKit
 import SwiftUI
 
-class NewWorkoutViewController: UIViewController {
+class NewWorkoutViewController: UIViewController, WorkoutTableViewCellDelegate, CollectionImageWorkoutViewControllerDelegate {
+    func imageTapped(with image: UIImage) {
+        repsOrTimerView.setupStackView(image: image)
+    }
+    
+    func actionOfStartButton() {
+        let vc = CollectionImageWorkoutViewController()
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+        }
+        present(vc, animated: true)
+    }
     
     //MARK: - UI Elements
     private let scrollView: UIScrollView = {
@@ -78,6 +89,7 @@ class NewWorkoutViewController: UIViewController {
     
     private let dateOrRepeatView = DateAndRepeatView()
     private let repsOrTimerView = RepsOrTimerView()
+    private let collectionVC = CollectionImageWorkoutViewController()
     
     //MARK: - Life cicle
     override func viewDidLoad() {
@@ -100,11 +112,13 @@ class NewWorkoutViewController: UIViewController {
         scrollView.addSubview(repsOrTimerLabel)
         scrollView.addSubview(repsOrTimerView)
         scrollView.addSubview(saveButton)
+        
+        collectionVC.collectionDelegate = self
+        repsOrTimerView.repsOrTimerViewDelegate = self
     }
 }
 
 extension NewWorkoutViewController {
-    
     //MARK: - Constraints
     private func setConstraints() {
         NSLayoutConstraint.activate([
@@ -157,7 +171,6 @@ extension NewWorkoutViewController {
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 5),
             saveButton.heightAnchor.constraint(equalToConstant: 55)
-            
         ])
     }
     
@@ -195,3 +208,5 @@ struct NewWorkoutViewControllerProviders: PreviewProvider {
         }
     }
 }
+
+

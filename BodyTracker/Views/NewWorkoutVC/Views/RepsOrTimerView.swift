@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol RepsOrTimerViewDelegate: AnyObject {
+    func selectImageButtonTapped()
+}
+
 class RepsOrTimerView: UIView {
+    
+    weak var repsOrTimerViewDelegate: WorkoutTableViewCellDelegate?
     
     private enum LabelState {
         case active
@@ -51,19 +57,25 @@ class RepsOrTimerView: UIView {
                                            font: UIFont.robotoRegular(size: 18),
                                            alignment: .left)
     
-    private let selectionPictureLabel = UILabel(text: "Выберите картинку для тренировки",
+    private let selectionPictureLabel = UILabel(text: "Выберите картинку:",
                                                 color: .specialGray,
                                                 font: UIFont.robotoRegular(size: 18),
                                                 alignment: .center)
     
-    private var selectImage: UIButton = {
-        let button = UIButton(type: .custom)
-        let image = UIImage(resource: .no)
-        button.setBackgroundImage(image, for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.clipsToBounds = true
+    private let selectImageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .blue
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    private var trainingImageView: UIImageView = {
+        let imageView = UIImageView()
+        //    imageView.image = UIImage(resource: .no)
+        // imageView.layer.cornerRadius = Constants.radiusCorner
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     private let setsSlider: UISlider = {
@@ -100,7 +112,7 @@ class RepsOrTimerView: UIView {
     private var sliderStackView = UIStackView()
     private var repsStackView = UIStackView()
     private var timerStackView = UIStackView()
-    //private var imageStackView = UIStackView()
+    private var imageStackView = UIStackView()
     
     //MARK: - Life cicle
     override init(frame: CGRect) {
@@ -110,11 +122,14 @@ class RepsOrTimerView: UIView {
         setupView()
         setConstraints()
         addShadowOnView()
-        setTarget()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupStackView(image: UIImage) {
+        trainingImageView.image = image
     }
     
     //MARK: - Setup stack
@@ -128,35 +143,22 @@ class RepsOrTimerView: UIView {
                                                           setsSlider],
                                        axis: .vertical,
                                        spacing: 5)
-        addSubview(sliderStackView)
-        addSubview(chooseRepeatOrtimer)
         
         repsStackView = UIStackView(arrangedSubviews: [repsLabel,
                                                        repsNumberLabel],
                                     axis: .horizontal,
                                     spacing: 10)
         
-        addSubview(repsStackView)
-        addSubview(repsSlider)
-        
         timerStackView = UIStackView(arrangedSubviews: [timerLabel,
                                                         timerNumberLabel],
                                      axis: .horizontal,
                                      spacing: 10)
         
-        addSubview(timerStackView)
-        addSubview(timerSlider)
-        
-//        imageStackView = UIStackView(arrangedSubviews: [selectionPictureLabel,
-//                                                        selectImage],
-//                                     axis: .vertical,
-//                                     spacing: 10)
-//        
-//        addSubview(imageStackView)
-        
-        addSubview(selectionPictureLabel)
-        addSubview(selectImage)
-                                                        
+        imageStackView = UIStackView(arrangedSubviews: [selectionPictureLabel,
+                                                        selectImageButton],
+                                     axis: .vertical,
+                                     spacing: 5)
+        imageStackView.backgroundColor = .red
     }
     
     private func setupView() {
@@ -164,9 +166,19 @@ class RepsOrTimerView: UIView {
         backgroundColor = .specialDirtyWhite
         layer.cornerRadius = Constants.radiusCorner
         
+        addSubview(sliderStackView)
+        addSubview(chooseRepeatOrtimer)
+        addSubview(repsStackView)
+        addSubview(repsSlider)
+        addSubview(timerStackView)
+        addSubview(timerSlider)
+        addSubview(imageStackView)
+        addSubview(trainingImageView)
+        
         repsSlider.addTarget(self, action: #selector(repsSliderChanged), for: .valueChanged)
         setsSlider.addTarget(self, action: #selector(setsSliderChanged), for: .valueChanged)
         timerSlider.addTarget(self, action: #selector(timerSliderChanged), for: .valueChanged)
+        selectImageButton.addTarget(self, action: #selector(selectImageButtonTapped), for: .touchUpInside)
     }
     
     private func setActive(nameLabel: UILabel, numberLabel: UILabel, slider: UISlider) {
@@ -174,6 +186,7 @@ class RepsOrTimerView: UIView {
         numberLabel.alpha = 1
         slider.alpha = 1
     }
+    
     private func setNegative(nameLabel: UILabel, numberLabel: UILabel, slider: UISlider) {
         nameLabel.alpha = 0.5
         numberLabel.alpha = 0.5
@@ -182,18 +195,11 @@ class RepsOrTimerView: UIView {
 }
 
 extension RepsOrTimerView {
-    
-    //MARK: - Target
-    private func setTarget() {
-        selectImage.addTarget(self, action: #selector(selectImageButtonTapped), for: .touchUpInside)
-    }
-    
+    //MARK: - Targets
     @objc private func selectImageButtonTapped() {
-        print("кнопка работает")
-//        let vc = CollectionImageWorkoutViewController()
-//        present(vc, animated: true)
+        repsOrTimerViewDelegate?.actionOfStartButton()
     }
-
+    
     //MARK: - Extension - Setup Slider
     @objc private func repsSliderChanged(sender: UISlider) {
         repsNumberLabel.text = "\(Int(sender.value))"
@@ -219,7 +225,6 @@ extension RepsOrTimerView {
         
         setState(nameLabel: timerLabel, numberLabel: timerNumberLabel, slider: timerSlider, state: .active)
         setState(nameLabel: repsLabel, numberLabel: repsNumberLabel, slider: repsSlider, state: .negative)
-        
     }
     
     private func setState(nameLabel: UILabel, numberLabel: UILabel, slider: UISlider, state: LabelState) {
@@ -236,8 +241,6 @@ extension RepsOrTimerView {
             numberLabel.text = (numberLabel == timerNumberLabel) ? "0 мин" :  "0"
         }
     }
-    
-    
     
     //MARK: - Constraints
     private func setConstraints() {
@@ -267,20 +270,17 @@ extension RepsOrTimerView {
             timerSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
             timerSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
             
-            selectionPictureLabel.topAnchor.constraint(equalTo: timerSlider.bottomAnchor, constant: 20),
-            selectionPictureLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
-            selectionPictureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
-        
+            trainingImageView.topAnchor.constraint(equalTo: timerSlider.bottomAnchor, constant: 50),
+            trainingImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            trainingImageView.heightAnchor.constraint(equalToConstant: 150),
+            trainingImageView.widthAnchor.constraint(equalToConstant: 150),
             
-            selectImage.topAnchor.constraint(equalTo: selectionPictureLabel.bottomAnchor, constant: 20),
-            selectImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            selectImage.heightAnchor.constraint(equalToConstant: 100),
-            selectImage.widthAnchor.constraint(equalToConstant: 100)
+            selectImageButton.heightAnchor.constraint(equalToConstant: 100),
             
-//            imageStackView.topAnchor.constraint(equalTo: timerSlider.bottomAnchor, constant: 10),
-//            imageStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
-//            imageStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
-//            imageStackView.heightAnchor.constraint(equalToConstant: 200),
+            imageStackView.topAnchor.constraint(equalTo: timerSlider.bottomAnchor, constant: 10),
+            imageStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 52),
+            imageStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -52),
+            imageStackView.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
 }
