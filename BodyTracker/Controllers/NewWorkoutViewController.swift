@@ -11,21 +11,17 @@ import SwiftUI
 
 class NewWorkoutViewController: UIViewController, WorkoutTableViewCellDelegate, CollectionImageWorkoutViewControllerDelegate {
     func imageTapped(with image: UIImage) {
-        repsOrTimerView.setupImageView(image: image)
+        repsOrTimerView.setupStackView(image: image)
     }
-    
-    
     
     func actionOfStartButton() {
         let vc = CollectionImageWorkoutViewController()
-        vc.collectionDelegate = self
-        
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
         }
         present(vc, animated: true)
     }
-
+    
     //MARK: - UI Elements
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -94,6 +90,7 @@ class NewWorkoutViewController: UIViewController, WorkoutTableViewCellDelegate, 
     private let dateOrRepeatView = DateAndRepeatView()
     private let repsOrTimerView = RepsOrTimerView()
     private let collectionVC = CollectionImageWorkoutViewController()
+    
     //MARK: - Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +119,6 @@ class NewWorkoutViewController: UIViewController, WorkoutTableViewCellDelegate, 
 }
 
 extension NewWorkoutViewController {
-    
     //MARK: - Constraints
     private func setConstraints() {
         NSLayoutConstraint.activate([
@@ -175,7 +171,6 @@ extension NewWorkoutViewController {
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 5),
             saveButton.heightAnchor.constraint(equalToConstant: 55)
-            
         ])
     }
     
@@ -188,7 +183,6 @@ extension NewWorkoutViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
-
 
 //MARK: - Delegate TextField
 extension NewWorkoutViewController: UITextViewDelegate {
@@ -214,3 +208,5 @@ struct NewWorkoutViewControllerProviders: PreviewProvider {
         }
     }
 }
+
+

@@ -20,7 +20,6 @@ class CollectionImageWorkoutViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 5
-       // layout.minimumInteritemSpacing = 2
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.bounces = false
@@ -48,8 +47,8 @@ class CollectionImageWorkoutViewController: UIViewController {
         imageCollectionView.dataSource = self
         
         imageCollectionView.register(CollectionImageWorkoutCell.self,
-                                    forCellWithReuseIdentifier: CollectionImageWorkoutCell.cellID)
-       
+                                     forCellWithReuseIdentifier: CollectionImageWorkoutCell.cellID)
+        
     }
     
     private func setConstraints() {
@@ -81,13 +80,11 @@ extension CollectionImageWorkoutViewController: UICollectionViewDelegate, UIColl
         guard let image = cell?.workoutImage.image else { return }
         
         collectionDelegate?.imageTapped(with: image)
-       
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: 150)
     }
-    
-    
 }
-    
+
+
