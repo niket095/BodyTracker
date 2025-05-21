@@ -47,8 +47,7 @@ class CollectionImageWorkoutViewController: UIViewController {
         imageCollectionView.dataSource = self
         
         imageCollectionView.register(CollectionImageWorkoutCell.self,
-                                     forCellWithReuseIdentifier: CollectionImageWorkoutCell.cellID)
-        
+                                    forCellWithReuseIdentifier: CollectionImageWorkoutCell.cellID)
     }
     
     private func setConstraints() {
@@ -86,5 +85,3 @@ extension CollectionImageWorkoutViewController: UICollectionViewDelegate, UIColl
         return CGSize(width: 150, height: 150)
     }
 }
-
-

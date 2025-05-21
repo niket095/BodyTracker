@@ -11,17 +11,19 @@ import SwiftUI
 
 class NewWorkoutViewController: UIViewController, WorkoutTableViewCellDelegate, CollectionImageWorkoutViewControllerDelegate {
     func imageTapped(with image: UIImage) {
-        repsOrTimerView.setupStackView(image: image)
+        repsOrTimerView.setupImageView(image: image)
     }
     
     func actionOfStartButton() {
         let vc = CollectionImageWorkoutViewController()
+        vc.collectionDelegate = self
+        
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
         }
         present(vc, animated: true)
     }
-    
+
     //MARK: - UI Elements
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -118,8 +120,8 @@ class NewWorkoutViewController: UIViewController, WorkoutTableViewCellDelegate, 
     }
 }
 
+//MARK: - Constraints
 extension NewWorkoutViewController {
-    //MARK: - Constraints
     private func setConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
@@ -208,5 +210,3 @@ struct NewWorkoutViewControllerProviders: PreviewProvider {
         }
     }
 }
-
-

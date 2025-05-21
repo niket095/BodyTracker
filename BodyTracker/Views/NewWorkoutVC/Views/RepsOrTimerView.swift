@@ -62,22 +62,6 @@ class RepsOrTimerView: UIView {
                                                 font: UIFont.robotoRegular(size: 18),
                                                 alignment: .center)
     
-    private let selectImageButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .blue
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private var trainingImageView: UIImageView = {
-        let imageView = UIImageView()
-        //    imageView.image = UIImage(resource: .no)
-        // imageView.layer.cornerRadius = Constants.radiusCorner
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
     private let setsSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 0
@@ -108,6 +92,21 @@ class RepsOrTimerView: UIView {
         return slider
     }()
     
+    private let selectImageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var trainingImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(resource: .no)
+        imageView.layer.cornerRadius = Constants.radiusCorner
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private var setsStackView = UIStackView()
     private var sliderStackView = UIStackView()
     private var repsStackView = UIStackView()
@@ -122,13 +121,16 @@ class RepsOrTimerView: UIView {
         setupView()
         setConstraints()
         addShadowOnView()
+        
+       // collectionVC.collectionDelegate = self
+     //   setTarget()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupStackView(image: UIImage) {
+    func setupImageView(image: UIImage) {
         trainingImageView.image = image
     }
     
@@ -143,22 +145,27 @@ class RepsOrTimerView: UIView {
                                                           setsSlider],
                                        axis: .vertical,
                                        spacing: 5)
+      
         
         repsStackView = UIStackView(arrangedSubviews: [repsLabel,
                                                        repsNumberLabel],
                                     axis: .horizontal,
                                     spacing: 10)
+       
         
         timerStackView = UIStackView(arrangedSubviews: [timerLabel,
                                                         timerNumberLabel],
                                      axis: .horizontal,
                                      spacing: 10)
+       
         
         imageStackView = UIStackView(arrangedSubviews: [selectionPictureLabel,
                                                         selectImageButton],
                                      axis: .vertical,
                                      spacing: 5)
-        imageStackView.backgroundColor = .red
+        
+      //  addSubview(selectionPictureLabel)
+      //  addSubview(selectImage)
     }
     
     private func setupView() {
@@ -186,7 +193,6 @@ class RepsOrTimerView: UIView {
         numberLabel.alpha = 1
         slider.alpha = 1
     }
-    
     private func setNegative(nameLabel: UILabel, numberLabel: UILabel, slider: UISlider) {
         nameLabel.alpha = 0.5
         numberLabel.alpha = 0.5
@@ -194,13 +200,14 @@ class RepsOrTimerView: UIView {
     }
 }
 
+//MARK: - Targets
 extension RepsOrTimerView {
-    //MARK: - Targets
     @objc private func selectImageButtonTapped() {
         repsOrTimerViewDelegate?.actionOfStartButton()
+        
     }
-    
-    //MARK: - Extension - Setup Slider
+
+    //MARK: - Setup Slider
     @objc private func repsSliderChanged(sender: UISlider) {
         repsNumberLabel.text = "\(Int(sender.value))"
         
@@ -269,7 +276,7 @@ extension RepsOrTimerView {
             timerSlider.topAnchor.constraint(equalTo: timerStackView.bottomAnchor, constant: 5),
             timerSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
             timerSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
-            
+                       
             trainingImageView.topAnchor.constraint(equalTo: timerSlider.bottomAnchor, constant: 50),
             trainingImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             trainingImageView.heightAnchor.constraint(equalToConstant: 150),

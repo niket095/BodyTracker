@@ -11,18 +11,21 @@ import UIKit
 class CollectionImageWorkoutCell: UICollectionViewCell {
     static let cellID = "CollectionImageWorkoutCell"
     
-    let workoutImage: UIImageView = {
+     let workoutImage: UIImageView = {
         let imageView = UIImageView()
+      //  imageView.image = UIImage(resource: .no)
         imageView.layer.cornerRadius = Constants.radiusCorner
         imageView.layer.borderWidth = 1
         imageView.clipsToBounds = true
+      //  imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupCell()
+    //    setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -34,7 +37,9 @@ class CollectionImageWorkoutCell: UICollectionViewCell {
         addSubview(workoutImage)
     }
     
+    
     public func setupModel(model: CollectionImageWorkoutModel) {
+        //  nameWorkoutLabel.text = model.name
         workoutImage.image = UIImage(named: model.image)
-    }
+     }
 }
