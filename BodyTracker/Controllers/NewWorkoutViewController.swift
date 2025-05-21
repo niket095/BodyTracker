@@ -9,8 +9,23 @@
 import UIKit
 import SwiftUI
 
-class NewWorkoutViewController: UIViewController {
+class NewWorkoutViewController: UIViewController, WorkoutTableViewCellDelegate, CollectionImageWorkoutViewControllerDelegate {
+    func imageTapped(with image: UIImage) {
+        repsOrTimerView.setupImageView(image: image)
+    }
     
+    
+    
+    func actionOfStartButton() {
+        let vc = CollectionImageWorkoutViewController()
+        vc.collectionDelegate = self
+        
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+        }
+        present(vc, animated: true)
+    }
+
     //MARK: - UI Elements
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -78,7 +93,7 @@ class NewWorkoutViewController: UIViewController {
     
     private let dateOrRepeatView = DateAndRepeatView()
     private let repsOrTimerView = RepsOrTimerView()
-    
+    private let collectionVC = CollectionImageWorkoutViewController()
     //MARK: - Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +115,9 @@ class NewWorkoutViewController: UIViewController {
         scrollView.addSubview(repsOrTimerLabel)
         scrollView.addSubview(repsOrTimerView)
         scrollView.addSubview(saveButton)
+        
+        collectionVC.collectionDelegate = self
+        repsOrTimerView.repsOrTimerViewDelegate = self
     }
 }
 
@@ -170,6 +188,7 @@ extension NewWorkoutViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
 
 //MARK: - Delegate TextField
 extension NewWorkoutViewController: UITextViewDelegate {
