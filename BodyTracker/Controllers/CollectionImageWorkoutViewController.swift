@@ -18,10 +18,12 @@ class CollectionImageWorkoutViewController: UIViewController {
     
     private let imageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero,
+                                              collectionViewLayout: layout)
         collectionView.bounces = false
         collectionView.backgroundColor = .none
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +57,7 @@ class CollectionImageWorkoutViewController: UIViewController {
             imageCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             imageCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             imageCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            imageCollectionView.heightAnchor.constraint(equalToConstant: 200)
+            imageCollectionView.heightAnchor.constraint(equalToConstant: 800)
         ])
     }
 }
@@ -79,6 +81,8 @@ extension CollectionImageWorkoutViewController: UICollectionViewDelegate, UIColl
         guard let image = cell?.workoutImage.image else { return }
         
         collectionDelegate?.imageTapped(with: image)
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
