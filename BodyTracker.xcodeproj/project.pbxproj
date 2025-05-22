@@ -15,6 +15,9 @@
 		115D63022DA83A020064DFED /* WeatherNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D62FF2DA83A020064DFED /* WeatherNetwork.swift */; };
 		115D63032DA83A020064DFED /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D62FC2DA83A020064DFED /* Api.swift */; };
 		118161C42DB6CCD40050A722 /* CollectionImageWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118161C32DB6CCD40050A722 /* CollectionImageWorkoutViewController.swift */; };
+		11C0441B2DDF8E5A005E0D93 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0441A2DDF8E5A005E0D93 /* WorkoutModel.swift */; };
+		11C044252DDF91A9005E0D93 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 11C044242DDF91A9005E0D93 /* RealmSwift */; };
+		11C044282DDF91E3005E0D93 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 11C044242DDF91A9005E0D93 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CE1D8F2C2D7B718A00CFECD9 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D8F2B2D7B718A00CFECD9 /* UIStackView + Extension.swift */; };
 		CE2C3B302D5FC30500A4BA16 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C3B2F2D5FC30500A4BA16 /* CalendarView.swift */; };
 		CE2C3B322D5FC3EA00A4BA16 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C3B312D5FC3EA00A4BA16 /* WeatherView.swift */; };
@@ -39,6 +42,20 @@
 		CEF400112D401A7D009B6005 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF4000F2D401A7D009B6005 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		11C044272DDF91D7005E0D93 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				11C044282DDF91E3005E0D93 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1124F35E2DB95D3600E4E1DB /* CollectionImageWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageWorkoutCell.swift; sourceTree = "<group>"; };
 		1124F3612DB9613900E4E1DB /* CollectionImageWorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageWorkoutModel.swift; sourceTree = "<group>"; };
@@ -48,6 +65,7 @@
 		115D62FE2DA83A020064DFED /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		115D62FF2DA83A020064DFED /* WeatherNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetwork.swift; sourceTree = "<group>"; };
 		118161C32DB6CCD40050A722 /* CollectionImageWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImageWorkoutViewController.swift; sourceTree = "<group>"; };
+		11C0441A2DDF8E5A005E0D93 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		CE1D8F2B2D7B718A00CFECD9 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		CE2C3B2F2D5FC30500A4BA16 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		CE2C3B312D5FC3EA00A4BA16 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -79,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11C044252DDF91A9005E0D93 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				1124F3612DB9613900E4E1DB /* CollectionImageWorkoutModel.swift */,
+				11C0441A2DDF8E5A005E0D93 /* WorkoutModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,6 +281,7 @@
 				CEF4FFFD2D401A7B009B6005 /* Sources */,
 				CEF4FFFE2D401A7B009B6005 /* Frameworks */,
 				CEF4FFFF2D401A7B009B6005 /* Resources */,
+				11C044272DDF91D7005E0D93 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -295,6 +316,9 @@
 				Base,
 			);
 			mainGroup = CEF4FFF82D401A7B009B6005;
+			packageReferences = (
+				11C044212DDF91A9005E0D93 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = CEF400022D401A7B009B6005 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -339,6 +363,7 @@
 				CE49BB6C2D6FA0FB005BFBEB /* UILabel + Extension.swift in Sources */,
 				CE2C3B322D5FC3EA00A4BA16 /* WeatherView.swift in Sources */,
 				CE1D8F2C2D7B718A00CFECD9 /* UIStackView + Extension.swift in Sources */,
+				11C0441B2DDF8E5A005E0D93 /* WorkoutModel.swift in Sources */,
 				118161C42DB6CCD40050A722 /* CollectionImageWorkoutViewController.swift in Sources */,
 				CE2C3B302D5FC30500A4BA16 /* CalendarView.swift in Sources */,
 				CEF400052D401A7B009B6005 /* AppDelegate.swift in Sources */,
@@ -558,6 +583,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		11C044212DDF91A9005E0D93 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		11C044242DDF91A9005E0D93 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11C044212DDF91A9005E0D93 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEF4FFF92D401A7B009B6005 /* Project object */;
 }
